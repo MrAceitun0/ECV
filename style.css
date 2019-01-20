@@ -9,16 +9,211 @@ body{
 	background-color: #777;
 }
 
-.chatbox{
-	width: 500px;
-	min-width: 390px;
-	height: 600px;
-	background-color: #fff;
-	padding: 25px;
-	margin: 20px auto;
-	box-shadow: 0 3px #ccc;
+.sideUser {
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 200px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row wrap;
 }
 
+.sideUser p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+
+.user-photo {
+    width: 60px;
+    height: 60px;
+    background: #ccc;
+    border-radius: 50%;
+    margin-left: 10px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.roomList {
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 200px;
+    left: 200px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row wrap;
+    display: flex;
+    flex-flow: column;
+}
+
+.roomList p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    margin: 10px;
+}
+
+.room {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-box {
+    background-color: #ffffff;
+    width: 800px;
+    height: 800px;
+    top: 100px;
+    left: 600px;
+    position:fixed;
+}
+
+.roomName {
+    width: 800px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 600px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 30px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.userList{
+    margin-top: 5px;
+    text-align:right;
+    margin-left: 350px;
+}
+
+.chat {
+    width: 800px;
+    position: fixed;
+    z-index: 1;
+    top: 180px;
+    left: 600px;
+    background: #fff;
+    overflow-x: hidden;
+    padding: 30px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.chatlogs {
+    padding: 10px;
+    width: 100%;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.chatlogs::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0,0,0,.1);
+}
+
+.chat {
+    width: 800px;
+    position: fixed;
+    z-index: 1;
+    top: 180px;
+    left: 600px;
+    background: #fff;
+    overflow-x: hidden;
+    padding: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+.chat .chat-message {
+    width: 80%;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+
+}
+
+.friend {
+    background: #1adda4;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.self {
+    background: #1ddced;
+    float: right;
+}
+
+.chat-form {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.chat-form textarea {
+    background: #fbfbfb;
+    width:600px;
+    height: 50px;
+    border: 2px solid #eee;
+    border-radius: 3px;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.chat-form textarea:focus {
+    background: #fff;
+}
+
+.chat-form textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chat-form textarea::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0,0,0,.1);
+}
+
+    .chat-form button {
+        background: #777;
+        padding: 5px 15px;
+        font-size: 30px;
+        color: #fff;
+        border: none;
+        margin: 0 10px;
+        border-radius: 3px;
+        box-shadow: 0 3px 0 #777;
+        cursor: pointer;
+        -webkit-transition: background .2s ease;
+        -moz-transition: background .2s ease;
+        -o-transition: background .2s ease;
+    }
+
+.chat-form button:hover {
+    background: #ccc;
+}
+/*
 .chatlogs{
 	padding: 10px;
 	width: 100%;
@@ -123,4 +318,4 @@ body{
 
 .chat-form button:hover{
 	background: #13c8d9;
-}
+}*/
