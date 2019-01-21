@@ -10,7 +10,7 @@ body{
 }
 
 .sideUser {
-    width: 300px;
+    width: 320px;
     position: fixed;
     z-index: 1;
     top: 100px;
@@ -43,7 +43,7 @@ body{
 }
 
 .roomList {
-    width: 300px;
+    width: 320px;
     position: fixed;
     z-index: 1;
     top: 200px;

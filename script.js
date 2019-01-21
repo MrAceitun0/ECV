@@ -1,5 +1,5 @@
 var server = new SillyClient();
-server.connect("ecv-esup.s.upf.edu:9000", "AFRO_GLOBAL");
+server.connect("tamats.com:55000", "AFRO_GENERAL");
 
 server.on_connect = function () {
     console.log("Server connected");
@@ -7,66 +7,85 @@ server.on_connect = function () {
 
 var userID;
 server.on_ready = function (id) {
-    userID = id;
     console.log(id);
 };
 
+var divUsers;
+var nUsers;
+
 server.on_room_info = function (info) {
-    console.log(info);
+    divUsers = document.createElement("h3");
+    nUsers = info.clients.length;
+    divUsers.className = "userList";
+    divUsers.innerHTML = nUsers + " users connected";
+
+    var roomName = document.getElementById("roomName");
+    roomName.appendChild(divUsers);
 };
 
+
 server.on_message = function (author_id, msg) {
-        recieveMessage(author_id,msg);
+     recieveMessage(author_id,msg);
 }
 
-/*
+
 server.on_user_connected = function (user_id) {
-    var element = document.createElement("p");
-    element.innerHTML = "WELCOME "+user_id;
-    //element.className = "chat-message";
-    messages_container_self.appendChild(element);
+    var division = document.createElement("div");
+    division.className = "chat-message friend";
+    var message = document.createElement("p");
+    message.innerHTML = "WELCOME " + user_id;
 
-    server.sendMessage({ type: "msg", msg: input.value });
+    division.appendChild(message);
+    messages_container.appendChild(division);
+
     input.value = "";
+    nUsers++;
+    divUsers.innerHTML = nUsers + " users connected";
 }
-
 
 server.on_user_disconnected = function (user_id) {
-    var element = document.createElement("p");
-    element.innerHTML = "BYE " + user_id;
-    //element.className = "chat-message";
-    messages_container_self.appendChild(element);
-
-    server.sendMessage({ type: "msg", msg: input.value });
-    input.value = "";
+    nUsers--;
+    divUsers.innerHTML = nUsers + " users connected";
 }
-*/
+
 var input = document.querySelector("textarea");
-var button = document.querySelector("button");
-var messages_container_self = document.getElementById("msgme");
-var messages_container_friend = document.getElementById("msgfriend");
+var sendButton = document.getElementById("sendButton");
+var messages_container = document.getElementById("msgbox");
+var user = document.getElementById("userName");
 
 function sendMessage()
 {
-    var element = document.createElement("p");
-    element.innerHTML = input.value;
-    element.className = "chat-message";
-    messages_container_self.appendChild(element);
+    var division = document.createElement("div");
+    division.className = "chat-message self";
+    var author = document.createElement("h4");
+    author.innerHTML = user.innerHTML;
+    var message = document.createElement("p");
+    message.innerHTML = input.value;
+    
+    division.appendChild(author);
+    division.appendChild(message);
+    messages_container.appendChild(division);
 
     server.sendMessage({ type: "msg", msg: input.value });
     input.value = "";
 }
 
 function recieveMessage(author_id, text) {
-    var element = document.createElement("p");
-    element.innerHTML = JSON.parse(text).msg;
-    element.className = "chat-message";
-    messages_container_friend.appendChild(element);
+    var division = document.createElement("div");
+    division.className = "chat-message friend";
+    var author = document.createElement("h4");
+    author.innerHTML = author_id;
+    var message = document.createElement("p");
+    message.innerHTML = JSON.parse(text).msg;
+
+    division.appendChild(author);
+    division.appendChild(message);
+    messages_container.appendChild(division);
 
     input.value = "";
 }
 
-button.addEventListener("click", sendMessage);
+sendButton.addEventListener("click", sendMessage);
 
 input.addEventListener("keydown", onKey);
 function onKey(e)
@@ -76,3 +95,27 @@ function onKey(e)
         sendMessage();
     }
 }
+
+var generalButton = document.getElementById("generalButton");
+var gamingButton = document.getElementById("gamingButton");
+var offButton = document.getElementById("offButton");
+
+function connectGeneral()
+{
+    //divUsers.remove();
+    server.connect("tamats.com:55000", "AFRO_GENERAL");
+}
+
+function connectGaming()
+{
+    server.connect("tamats.com:55000", "AFRO_GAMING");
+}
+
+function connectOfftopic()
+{
+    server.connect("tamats.com:55000", "AFRO_OFFTOPIC");
+}
+
+generalButton.addEventListener("click", connectGeneral);
+gamingButton.addEventListener("click", connectGaming);
+offButton.addEventListener("click", connectOfftopic);
