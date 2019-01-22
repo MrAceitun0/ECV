@@ -3,6 +3,17 @@ server.connect("ecv-etic.upf.edu:9000", "AFRO_GLOBAL");
 
 server.on_connect = function () {
     console.log("Server connected");
+    namePos = document.getElementById("sideUser");
+    /*
+    photo = document.createElement("img");
+    photo.className = "user-photo";
+    photo.src = photoList[userImage];
+    */
+    pName = document.createElement("p");
+    pName.innerHTML = name;
+
+    //namePos.appendChild(photo);
+    namePos.appendChild(pName);
 };
 
 var userID;
@@ -51,14 +62,13 @@ server.on_user_disconnected = function (user_id) {
 var input = document.querySelector("textarea");
 var sendButton = document.getElementById("sendButton");
 var messages_container = document.getElementById("msgbox");
-var user = document.getElementById("userName");
 
 function sendMessage()
 {
     var division = document.createElement("div");
     division.className = "chat-message self";
     var author = document.createElement("h4");
-    author.innerHTML = user.innerHTML;
+    author.innerHTML = name;
     var message = document.createElement("p");
     message.innerHTML = input.value;
     
@@ -66,7 +76,7 @@ function sendMessage()
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    server.sendMessage({ type: "msg", msg: input.value });
+    server.sendMessage({ type: "msg", msg: input.value, userName: name });
     input.value = "";
 }
 
@@ -74,7 +84,7 @@ function recieveMessage(author_id, text) {
     var division = document.createElement("div");
     division.className = "chat-message friend";
     var author = document.createElement("h4");
-    author.innerHTML = author_id;
+    author.innerHTML = JSON.parse(text).userName;
     var message = document.createElement("p");
     message.innerHTML = JSON.parse(text).msg;
 
