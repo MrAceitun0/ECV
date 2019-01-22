@@ -195,20 +195,20 @@ body{
     background: rgba(0,0,0,.1);
 }
 
-    .chat-form button {
-        background: #777;
-        padding: 5px 15px;
-        font-size: 30px;
-        color: #fff;
-        border: none;
-        margin: 0 10px;
-        border-radius: 3px;
-        box-shadow: 0 3px 0 #777;
-        cursor: pointer;
-        -webkit-transition: background .2s ease;
-        -moz-transition: background .2s ease;
-        -o-transition: background .2s ease;
-    }
+.chat-form button {
+    background: #777;
+    padding: 5px 15px;
+    font-size: 30px;
+    color: #fff;
+    border: none;
+    margin: 0 10px;
+    border-radius: 3px;
+    box-shadow: 0 3px 0 #777;
+    cursor: pointer;
+    -webkit-transition: background .2s ease;
+    -moz-transition: background .2s ease;
+    -o-transition: background .2s ease;
+}
 
 .chat-form button:hover {
     background: #ccc;
