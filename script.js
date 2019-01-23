@@ -16,10 +16,6 @@ server.on_connect = function () {
     pName.innerHTML = localStorage.getItem("userNick");
     namePos.appendChild(pName);
 
-    //<img id="photo" src="img/userOne.jpg" class="user-photo">
-    console.log(localStorage.getItem("userImage"));
-    //photo.innerHTML = imageList[localStorage.getItem("userImage")];
-
     roomSpace = document.getElementById("roomName");
     roomID = document.createElement("h2");
     roomID.innerHTML = localStorage.getItem("selectedRoom");
@@ -118,26 +114,22 @@ function onKey(e)
     }
 }
 
-var generalButton = document.getElementById("generalButton");
-var gamingButton = document.getElementById("gamingButton");
-var offButton = document.getElementById("offButton");
-
-function connectGeneral()
+function sendEmoji(emoji)
 {
-    //divUsers.remove();
-    server.connect("ecv-etic.upf.edu:9000", "AO_GENERAL");
-}
+    var emojiList = ["&#x1F602;","&#x1F60D;","&#x1F621;","&#x1F622;","&#x1F639;","&#x1F64B;","&#x1F44C;","&#x1F483;"];
+    var division = document.createElement("div");
+    division.className = "chat-message self";
+    var author = document.createElement("h4");
+    author.innerHTML = localStorage.getItem("userNick");
+    var message = document.createElement("p");
+    message.innerHTML = emojiList[emoji];
+    
+    division.appendChild(author);
+    division.appendChild(message);
+    messages_container.appendChild(division);
 
-function connectGaming()
-{
-    server.connect("ecv-etic.upf.edu:9000", "AO_GAMING");
-}
+    server.sendMessage({ type: "msg", msg: emojiList[emoji], userName: localStorage.getItem("userNick") });
+    input.value = "";
 
-function connectOfftopic()
-{
-    server.connect("ecv-etic.upf.edu:9000", "AO_OFFTOPIC");
+    messages_container.scrollTop = messages_container.scrollHeight;
 }
-
-generalButton.addEventListener("click", connectGeneral);
-gamingButton.addEventListener("click", connectGaming);
-offButton.addEventListener("click", connectOfftopic);
