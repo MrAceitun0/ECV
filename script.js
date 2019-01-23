@@ -11,7 +11,7 @@ server.on_connect = function () {
     photo.className = "user-photo";
     photo.src = imageList[localStorage.getItem("userImage")];
     namePos.appendChild(photo);
-    
+
     pName = document.createElement("p");
     pName.innerHTML = localStorage.getItem("userNick");
     namePos.appendChild(pName);
@@ -88,6 +88,8 @@ function sendMessage()
 
     server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") });
     input.value = "";
+
+    messages_container.scrollTop = messages_container.scrollHeight;
 }
 
 function recieveMessage(author_id, text) {
@@ -101,8 +103,8 @@ function recieveMessage(author_id, text) {
     division.appendChild(author);
     division.appendChild(message);
     messages_container.appendChild(division);
-
-    input.value = "";
+    
+    messages_container.scrollTop = messages_container.scrollHeight;
 }
 
 sendButton.addEventListener("click", sendMessage);

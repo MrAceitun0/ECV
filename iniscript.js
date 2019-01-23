@@ -1,5 +1,6 @@
-//var room;
+var room;
 var nick;
+
 var okButton = document.getElementById("okbutton");
 
 
