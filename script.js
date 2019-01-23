@@ -20,11 +20,19 @@ server.on_connect = function () {
     roomID = document.createElement("h2");
     roomID.innerHTML = localStorage.getItem("selectedRoom");
     roomSpace.appendChild(roomID);
+
+    server.sendMessage({type: "Welcome", msg: localStorage.getItem("userNick") + " has connected", userName: null});
 };
 
 var userID;
 server.on_ready = function (id) {
+    userID = id;
     console.log(id);
+    console.log(server.clients.length);
+    if(server.clients.length == 1)
+    {
+
+    }
 };
 
 var divUsers;
@@ -50,14 +58,24 @@ server.on_user_connected = function (user_id) {
     var division = document.createElement("div");
     division.className = "chat-message friend";
     var message = document.createElement("p");
-    message.innerHTML = "WELCOME " + user_id;
+    //message.innerHTML = "WELCOME " + localStorage.getItem("userNick");
 
     division.appendChild(message);
-    messages_container.appendChild(division);
+    //messages_container.appendChild(division);
 
     input.value = "";
     nUsers++;
     divUsers.innerHTML = nUsers + " users connected";
+
+    if(userID == Object.keys(server.clients)[0])
+    {
+        for(var i = 0; i < messagesList.length; i++)
+        {
+            server.sendMessage(messagesList[i], user_id);       
+        }
+    }
+
+    messages_container.scrollTop = messages_container.scrollHeight;  
 }
 
 server.on_user_disconnected = function (user_id) {
@@ -83,24 +101,39 @@ function sendMessage()
     messages_container.appendChild(division);
 
     server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") });
+
+    getMessages("msg", input.value, localStorage.getItem("userNick"));
+
     input.value = "";
 
-    messages_container.scrollTop = messages_container.scrollHeight;
+    messages_container.scrollTop = messages_container.scrollHeight;    
 }
 
 function recieveMessage(author_id, text) {
     var division = document.createElement("div");
-    division.className = "chat-message friend";
+    if(JSON.parse(text).type == "Welcome")
+    {
+        division.className = "chat-message server";
+    }
+    else
+    {
+        division.className = "chat-message friend";
+    }
+
     var author = document.createElement("h4");
     author.innerHTML = JSON.parse(text).userName;
     var message = document.createElement("p");
     message.innerHTML = JSON.parse(text).msg;
+
+
 
     division.appendChild(author);
     division.appendChild(message);
     messages_container.appendChild(division);
     
     messages_container.scrollTop = messages_container.scrollHeight;
+
+    getMessages("msg", message.innerHTML, author.innerHTML);
 }
 
 sendButton.addEventListener("click", sendMessage);
@@ -129,7 +162,20 @@ function sendEmoji(emoji)
     messages_container.appendChild(division);
 
     server.sendMessage({ type: "msg", msg: emojiList[emoji], userName: localStorage.getItem("userNick") });
+
+    getMessages("msg", emojiList[emoji], author.innerHTML);
+
     input.value = "";
 
     messages_container.scrollTop = messages_container.scrollHeight;
+}
+
+
+var messagesList = [];
+
+function getMessages(tipo, mensaje, nombre)
+{
+    messagesList.push({type: tipo, msg: mensaje, userName: nombre});
+
+    console.log(messagesList);
 }
