@@ -14,7 +14,7 @@
         <div class="login-box" id="login-box">
             <textarea class="user-name" id="userName" placeholder="Username"></textarea>
             <select class="room" id="chatRoom" onchange="selectRoom();">
-                <option value="AO_GLOBAL">General Room</option>
+                <option value="AO_GENERAL">General Room</option>
                 <option value="AO_GAMING">Gaming Room</option>
                 <option value="AO_OFFTOPIC">OffTopic Room</option>
             </select>
@@ -29,6 +29,14 @@
             <button id="img6" class="button-user-photo"><img class="user-photo" src="img/default.png" /></button>
         </div>
     </div>
+    <script>
+        var rName;
+        function selectRoom(){
+            rName = document.getElementById("chatRoom").value;
+            console.log(rName);
+        }
+        
+    </script>
 </body>
     <script src="sillyserver.js"></script>
     <script src="iniscript.js"></script>
