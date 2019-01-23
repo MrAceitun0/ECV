@@ -1,5 +1,5 @@
 var server = new SillyClient();
-server.connect("ecv-etic.upf.edu:9000", "AFRO_GLOBAL");
+server.connect("ecv-etic.upf.edu:9000", "AO_GLOBAL"/*room*/);
 
 server.on_connect = function () {
     console.log("Server connected");
@@ -113,17 +113,17 @@ var offButton = document.getElementById("offButton");
 function connectGeneral()
 {
     //divUsers.remove();
-    server.connect("ecv-etic.upf.edu:9000", "AFRO_GENERAL");
+    server.connect("ecv-etic.upf.edu:9000", "AO_GENERAL");
 }
 
 function connectGaming()
 {
-    server.connect("ecv-etic.upf.edu:9000", "AFRO_GAMING");
+    server.connect("ecv-etic.upf.edu:9000", "AO_GAMING");
 }
 
 function connectOfftopic()
 {
-    server.connect("ecv-etic.upf.edu:9000", "AFRO_OFFTOPIC");
+    server.connect("ecv-etic.upf.edu:9000", "AO_OFFTOPIC");
 }
 
 generalButton.addEventListener("click", connectGeneral);

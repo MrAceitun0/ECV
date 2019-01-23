@@ -12,14 +12,18 @@
 <body>
     <div class="log-in">
         <div class="login-box" id="login-box">
-            <textarea id="userName" placeholder="Username"></textarea>
-            <textarea id="room" placeholder="room"></textarea>
-            <a class="link-button" id="okbutton" href="#">Ok</a>            
+            <textarea class="user-name" id="userName" placeholder="Username"></textarea>
+            <select class="room" id="chatRoom" onchange="selectRoom();">
+                <option value="AO_GLOBAL">General Room</option>
+                <option value="AO_GAMING">Gaming Room</option>
+                <option value="AO_OFFTOPIC">OffTopic Room</option>
+            </select>
+            <a class="link-button" id="okbutton" href="#">Ok</a>
         </div>
         <div class="photos">
             <button id="img1" class="button-user-photo"><img class="user-photo" src="img/logo.png" /></button>
             <button id="img2" class="button-user-photo"><img class="user-photo" src="img/logo2.png" /></button>
-            <button id="img3" class="button-user-photo"><img class="user-photo" src="img/logo3.png" /></button>            
+            <button id="img3" class="button-user-photo"><img class="user-photo" src="img/logo3.png" /></button>
             <button id="img4" class="button-user-photo"><img class="user-photo" src="img/nyanCat.jpeg" /></button>
             <button id="img5" class="button-user-photo"><img class="user-photo" src="img/AlphaPiThetaBratva.png" /></button>
             <button id="img6" class="button-user-photo"><img class="user-photo" src="img/default.png" /></button>

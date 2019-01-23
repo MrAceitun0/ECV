@@ -24,12 +24,23 @@ body {
 }
 
 .login-box textarea {
-    height: 25px;
+    height: 30px;
     width: 200px;
     resize: none;
     border-radius: 3px;
     font-size: 18px;
     color: #333;
+}
+
+.user-name {
+    margin: auto;
+}
+
+.room {
+    height: 25px;
+    width: 200px;
+    border-radius: 3px;
+    font-size: 18px;
 }
 
 .link-button {

@@ -1,5 +1,7 @@
+//var room;
 var name;
 var okButton = document.getElementById("okbutton");
+
 
 function sendUserName()
 {
@@ -8,6 +10,16 @@ function sendUserName()
 }
 
 okButton.addEventListener("click", sendUserName);
+
+/*
+function selectRoom()
+{
+    room = document.getElementById("chatRoom").value;
+    console.log(room);
+}
+
+selectRoom();
+*/
 
 /*
 var userImage;
