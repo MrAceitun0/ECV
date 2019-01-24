@@ -16,11 +16,12 @@ body {
 
 .box{
 	background-color: #0a2d29;
-    width: 800px;
+    width:100%;
     height: 800px;
-    top: 100px;
-    left: 600px;
-    position:fixed;
+    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .login-box {
@@ -39,7 +40,7 @@ body {
     font-size: 32px;
     color: #333;
     text-align: center;
-
+    margin-bottom: 50px;
 }
 
 .user-name {
@@ -50,16 +51,12 @@ body {
 }
 
 .room {
-	margin-left: 137px;
-	margin-top: 50px;
+	margin: auto;
     height: 50px;
     width: 500px;
     border-radius: 3px;
     font-size: 32px;
     display: flex;
-  	justify-content: center;
-  	align-items: center;
-  	text-align: center;
 }
 
 .button-box{
