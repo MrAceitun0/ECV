@@ -27,12 +27,15 @@ server.on_connect = function () {
 
     //All users connected (not myself) will recieve a message telling that a new user has been connected
     server.sendMessage({type: "Welcome", msg: localStorage.getItem("userNick") + " has connected", userName: null});
+    //server.sendMessage({type: "nth", userName: localStorage.getItem("userNick"), foto: imageList[localStorage.getItem("userImage")]});
 };
 
 
 var userID;
 server.on_ready = function (id) {
     userID = id;
+    getUsers(id, localStorage.getItem("userNick"), imageList[localStorage.getItem("userImage")]);
+    server.sendMessage({type: "nth", authorID: id, userName: localStorage.getItem("userNick"), foto: imageList[localStorage.getItem("userImage")]});
     console.log(id);
 };
 
@@ -54,7 +57,6 @@ server.on_message = function (author_id, msg) {
      recieveMessage(author_id,msg);
 }
 
-
 server.on_user_connected = function (user_id) {
     var division = document.createElement("div");
     division.className = "chat-message friend";
@@ -70,7 +72,11 @@ server.on_user_connected = function (user_id) {
     {
         for(var i = 0; i < messagesList.length; i++)
         {
-            server.sendMessage(messagesList[i], user_id);       
+            server.sendMessage(messagesList[i], user_id);           
+        }
+        for(var j = 0; j < uList.length; j++)
+        {
+            server.sendMessage({type: "nth", authorID: uList[i].uID, userName: uList[i].uNom, foto: uList[i].uImg}, user_id);
         }
     }
 
@@ -81,6 +87,26 @@ server.on_user_disconnected = function (user_id) {
     //Modify the number of users connected
     nUsers--;
     divUsers.innerHTML = nUsers + " users connected";
+
+    var division = document.createElement("div");
+    division.className = "chat-message server";
+
+    var message = document.createElement("p");
+    
+    var j;
+    for(var i = 0; i < uList.length; i++)
+    {
+        if(user_id == uList[i].uID)
+        {
+            message.innerHTML = uList[i].uNom + " has disconnected";
+            j = i;
+        }
+    }
+    uList.splice(j, 1);
+
+    division.appendChild(message);
+    messages_container.appendChild(division);
+    
 }
 
 var input = document.querySelector("textarea");
@@ -150,30 +176,47 @@ function sendMessage()
 
 function recieveMessage(author_id, text) {
     var division = document.createElement("div");
-    if(JSON.parse(text).type == "Welcome")
+    
+    if(JSON.parse(text).type == "nth")
+    {
+        getUsers(JSON.parse(text).authorID, JSON.parse(text).userName, JSON.parse(text).foto);
+        console.log(uList);
+    }
+    else if(JSON.parse(text).type == "Welcome")
     {
         division.className = "chat-message server";
+
+        var author = document.createElement("h4");
+        author.innerHTML = JSON.parse(text).userName;
+        var message = document.createElement("p");
+        message.innerHTML = JSON.parse(text).msg;
+
+        division.appendChild(author);
+        division.appendChild(message);
+        messages_container.appendChild(division);
     }
     else
     {
         division.className = "chat-message friend";
+
+        var author = document.createElement("h4");
+        author.innerHTML = JSON.parse(text).userName;
+        var message = document.createElement("p");
+        message.innerHTML = JSON.parse(text).msg;
+
+        division.appendChild(author);
+        division.appendChild(message);
+        messages_container.appendChild(division);
+
+        getMessages("msg", message.innerHTML, author.innerHTML);
     }
-
-    var author = document.createElement("h4");
-    author.innerHTML = JSON.parse(text).userName;
-    var message = document.createElement("p");
-    message.innerHTML = JSON.parse(text).msg;
-
-    division.appendChild(author);
-    division.appendChild(message);
-    messages_container.appendChild(division);
     
     messages_container.scrollTop = messages_container.scrollHeight;
 
-    if(JSON.parse(text).type == "msg")
+    /*if(JSON.parse(text).type == "msg")
     {
         getMessages("msg", message.innerHTML, author.innerHTML);
-    }
+    }*/
 }
 
 sendButton.addEventListener("click", sendMessage);
@@ -211,7 +254,16 @@ function sendEmoji(emoji)
 //Save all messages of the room in order to send them whenever a new user is connected
 //Do not send private messages and messages about new users connected
 var messagesList = [];
+
 function getMessages(tipo, mensaje, nombre)
 {
     messagesList.push({type: tipo, msg: mensaje, userName: nombre});
+}
+
+
+var uList = [];
+
+function getUsers(id, nom, imatge)
+{
+    uList.push({uID: id, uNom: nom, uImg: imatge});
 }
