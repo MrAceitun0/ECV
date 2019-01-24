@@ -2,9 +2,11 @@ var imageList = ["img/logo2.png", "img/pac.jpg", "img/cena.png", "img/nyanCat.jp
 var roomListConnections = ["AO_General","AO_Gaming","AO_Offtopic"];
 var roomList = ["General Room","Gaming Room", "Offtopic Room"];
 
+//Connect to the server in the desired room
 var server = new SillyClient();
 server.connect("ecv-etic.upf.edu:9000", roomListConnections[localStorage.getItem("selectedRoom")]);
 
+//Whenever the user is connected, the name, the image and the selected room are shown on screen
 server.on_connect = function () {
     console.log("Server connected");
     namePos = document.getElementById("sideUser");
@@ -23,8 +25,10 @@ server.on_connect = function () {
     roomID.innerHTML = roomList[localStorage.getItem("selectedRoom")];
     roomSpace.appendChild(roomID);
 
+    //All users connected (not myself) will recieve a message telling that a new user has been connected
     server.sendMessage({type: "Welcome", msg: localStorage.getItem("userNick") + " has connected", userName: null});
 };
+
 
 var userID;
 server.on_ready = function (id) {
@@ -35,6 +39,7 @@ server.on_ready = function (id) {
 var divUsers;
 var nUsers;
 
+//Information about how many users are connected in the chat room is shown
 server.on_room_info = function (info) {
     divUsers = document.createElement("h3");
     nUsers = info.clients.length;
@@ -49,16 +54,18 @@ server.on_message = function (author_id, msg) {
      recieveMessage(author_id,msg);
 }
 
+
 server.on_user_connected = function (user_id) {
     var division = document.createElement("div");
     division.className = "chat-message friend";
     var message = document.createElement("p");
 
     division.appendChild(message);
-
+    //Modify the number of users connected
     nUsers++;
     divUsers.innerHTML = nUsers + " users connected";
 
+    //If a new user is connected and yourself are the oldest member of the chat room, you will send all existing messages to the new member
     if(userID == Object.keys(server.clients)[0])
     {
         for(var i = 0; i < messagesList.length; i++)
@@ -71,6 +78,7 @@ server.on_user_connected = function (user_id) {
 }
 
 server.on_user_disconnected = function (user_id) {
+    //Modify the number of users connected
     nUsers--;
     divUsers.innerHTML = nUsers + " users connected";
 }
@@ -99,6 +107,7 @@ function sendMessage()
     var dest = "";
     var missatge = "";
 
+    //Send a private message
     for(var i = 1; i < priv.length; i++)
     {
         missatge = missatge.concat(' ', priv[i]);
@@ -126,13 +135,13 @@ function sendMessage()
 
         server.sendMessage({ type: "whisper", msg: missatge, userName: localStorage.getItem("userNick") + " #" + userID +" (whisper)"}, dest);
     }
+    //Send message to the whole room
     else
     {
         server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") + " #" + userID });
 
         getMessages("msg", input.value, localStorage.getItem("userNick"));
     }
-    console.log(dest);
 
     input.value = "";
 
@@ -199,12 +208,10 @@ function sendEmoji(emoji)
     messages_container.scrollTop = messages_container.scrollHeight;
 }
 
-
+//Save all messages of the room in order to send them whenever a new user is connected
+//Do not send private messages and messages about new users connected
 var messagesList = [];
-
 function getMessages(tipo, mensaje, nombre)
 {
     messagesList.push({type: tipo, msg: mensaje, userName: nombre});
-
-    console.log(messagesList);
 }
