@@ -1,8 +1,9 @@
+var imageList = ["img/logo2.png", "img/pac.jpg", "img/cena.png", "img/nyanCat.jpeg", "img/AlphaPiThetaBratva.png", "img/default.png"];
+var roomListConnections = ["AO_General","AO_Gaming","AO_Offtopic"];
+var roomList = ["General Room","Gaming Room", "Offtopic Room"];
+
 var server = new SillyClient();
-server.connect("ecv-etic.upf.edu:9000", localStorage.getItem("selectedRoom"));
-
-var imageList = ["img/logo.png", "img/logo2.png", "img/logo3.png", "img/nyanCat.jpeg", "img/AlphaPiThetaBratva.png", "img/default.png"];
-
+server.connect("ecv-etic.upf.edu:9000", roomListConnections[localStorage.getItem("selectedRoom")]);
 server.on_connect = function () {
     console.log("Server connected");
     namePos = document.getElementById("sideUser");
@@ -18,7 +19,7 @@ server.on_connect = function () {
 
     roomSpace = document.getElementById("roomName");
     roomID = document.createElement("h2");
-    roomID.innerHTML = localStorage.getItem("selectedRoom");
+    roomID.innerHTML = roomList[localStorage.getItem("selectedRoom")];
     roomSpace.appendChild(roomID);
 
     server.sendMessage({type: "Welcome", msg: localStorage.getItem("userNick") + " has connected", userName: null});
@@ -164,8 +165,6 @@ function sendEmoji(emoji)
     server.sendMessage({ type: "msg", msg: emojiList[emoji], userName: localStorage.getItem("userNick") + " #" + userID });
 
     getMessages("msg", emojiList[emoji], author.innerHTML);
-
-    input.value = "";
 
     messages_container.scrollTop = messages_container.scrollHeight;
 }
