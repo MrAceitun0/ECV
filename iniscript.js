@@ -3,7 +3,6 @@ var nick;
 
 var okButton = document.getElementById("okbutton");
 
-
 function sendUserName()
 {
     nick = document.getElementById("userName").value;
@@ -20,8 +19,6 @@ function selectRoom()
 }
 
 selectRoom();
-
-
 
 var userImage = 5;
 

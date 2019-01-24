@@ -4,6 +4,7 @@ var roomList = ["General Room","Gaming Room", "Offtopic Room"];
 
 var server = new SillyClient();
 server.connect("ecv-etic.upf.edu:9000", roomListConnections[localStorage.getItem("selectedRoom")]);
+
 server.on_connect = function () {
     console.log("Server connected");
     namePos = document.getElementById("sideUser");
@@ -29,11 +30,6 @@ var userID;
 server.on_ready = function (id) {
     userID = id;
     console.log(id);
-    console.log(server.clients.length);
-    if(server.clients.length == 1)
-    {
-
-    }
 };
 
 var divUsers;
@@ -49,22 +45,17 @@ server.on_room_info = function (info) {
     roomName.appendChild(divUsers);
 };
 
-
 server.on_message = function (author_id, msg) {
      recieveMessage(author_id,msg);
 }
-
 
 server.on_user_connected = function (user_id) {
     var division = document.createElement("div");
     division.className = "chat-message friend";
     var message = document.createElement("p");
-    //message.innerHTML = "WELCOME " + localStorage.getItem("userNick");
 
     division.appendChild(message);
-    //messages_container.appendChild(division);
 
-    input.value = "";
     nUsers++;
     divUsers.innerHTML = nUsers + " users connected";
 
@@ -101,9 +92,47 @@ function sendMessage()
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") + " #" + userID });
+    var str = input.value;
+    var privado = str.split("");
+    var priv = str.split(" ");
+    var sep = priv[0].split("");
+    var dest = "";
+    var missatge = "";
 
-    getMessages("msg", input.value, localStorage.getItem("userNick"));
+    for(var i = 1; i < priv.length; i++)
+    {
+        missatge = missatge.concat(' ', priv[i]);
+    }
+
+    if(privado[0] == "#")
+    {
+        console.log(sep.length);
+
+        for(var i = 1; i < sep.length; i++)
+        {
+            dest = dest.concat(sep[i]);
+        }
+
+        server.sendMessage({ type: "whisper", msg: missatge, userName: localStorage.getItem("userNick") + " #" + userID+" (whisper)" }, dest);
+    }
+    else if(privado[1] == "#")
+    {
+        console.log(priv.length);
+
+        for(var i = 2; i < sep.length; i++)
+        {
+            dest = dest.concat(sep[i]);
+        }
+
+        server.sendMessage({ type: "whisper", msg: missatge, userName: localStorage.getItem("userNick") + " #" + userID +" (whisper)"}, dest);
+    }
+    else
+    {
+        server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") + " #" + userID });
+
+        getMessages("msg", input.value, localStorage.getItem("userNick"));
+    }
+    console.log(dest);
 
     input.value = "";
 
@@ -126,15 +155,16 @@ function recieveMessage(author_id, text) {
     var message = document.createElement("p");
     message.innerHTML = JSON.parse(text).msg;
 
-
-
     division.appendChild(author);
     division.appendChild(message);
     messages_container.appendChild(division);
     
     messages_container.scrollTop = messages_container.scrollHeight;
 
-    getMessages("msg", message.innerHTML, author.innerHTML);
+    if(JSON.parse(text).type == "msg")
+    {
+        getMessages("msg", message.innerHTML, author.innerHTML);
+    }
 }
 
 sendButton.addEventListener("click", sendMessage);
