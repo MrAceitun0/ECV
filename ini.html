@@ -3,30 +3,34 @@
 <head>
     <link rel="stylesheet" type="text/css" href="iniStyle.css">
     <title>ChatApp-LogIn</title>
-    <style>
-        body {
-            background-image: url("img/logo.png");
-        }
-    </style>
 </head>
 <body>
-    <div class="log-in">
+    <div class="box">
+        <div class="logo">
+            <img src="img/logobo.png">
+        </div>
+        
+        <div class="log-in">
         <div class="login-box" id="login-box">
             <textarea class="user-name" id="userName" placeholder="Username"></textarea>
             <select class="room" id="chatRoom" onchange="selectRoom();">
-                <option value="AO_GENERAL">General Room</option>
-                <option value="AO_GAMING">Gaming Room</option>
-                <option value="AO_OFFTOPIC">OffTopic Room</option>
+                <option value="0">General Room</option>
+                <option value="1">Gaming Room</option>
+                <option value="2">OffTopic Room</option>
             </select>
-            <a class="link-button" id="okbutton" href="#">Ok</a>
         </div>
         <div class="photos">
-            <button id="img1" class="button-user-photo"><img class="user-photo" src="img/logo.png" /></button>
-            <button id="img2" class="button-user-photo"><img class="user-photo" src="img/logo2.png" /></button>
-            <button id="img3" class="button-user-photo"><img class="user-photo" src="img/logo3.png" /></button>
+            <button id="img1" class="button-user-photo"><img class="user-photo" src="img/logo2.png" /></button>
+            <button id="img2" class="button-user-photo"><img class="user-photo" src="img/pac.jpg" /></button>
+            <button id="img3" class="button-user-photo"><img class="user-photo" src="img/cena.png" /></button>
             <button id="img4" class="button-user-photo"><img class="user-photo" src="img/nyanCat.jpeg" /></button>
             <button id="img5" class="button-user-photo"><img class="user-photo" src="img/AlphaPiThetaBratva.png" /></button>
             <button id="img6" class="button-user-photo"><img class="user-photo" src="img/default.png" /></button>
+        </div>
+
+    </div>
+        <div class="button-box">
+            <a class="link-button" id="okbutton" href="#">Log in</a>        
         </div>
     </div>
 </body>

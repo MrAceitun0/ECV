@@ -6,27 +6,46 @@
 }
 
 body{
-	background-color: #777;
+	background-color: #0a2d29;
 }
 
-.sideUser {
-    width: 320px;
+.sideBar{
+    width: 410px;
     position: fixed;
     z-index: 1;
     top: 25px;
-    left: 200px;
+    left: 100px;
     background: #eee;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: column wrap;
+
+}
+
+.sideUser {
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 200px;
+    left: 200px;
+    background: #0a2d29;
     overflow-x: hidden;
     padding: 10px 0;
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
 }
 
 .sideUser p {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: #000000;
+    color: #fff;
     display: block;
     margin-top: 7px;
     margin-right: 5px;
@@ -218,4 +237,9 @@ body{
     background: #777;
     text-align: center;
     float: left;
+}
+
+.logo{
+    max-width:auto;
+    max-height:auto;
 }

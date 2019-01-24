@@ -6,57 +6,95 @@
 }
 
 body {
-    background-color: #777;
+    background-color: #0a2d29;
+}
+.logo{
+	justify-content: center;
+  	align-items: center;
+  	text-align: center;
 }
 
-/*.logo-photo {
+.box{
+	background-color: #0a2d29;
     width: 800px;
-    height: 250px;
-    border-radius: 5px;
-    margin: 10px;
-    overflow: hidden;
-}*/
+    height: 800px;
+    top: 100px;
+    left: 600px;
+    position:fixed;
+}
 
 .login-box {
-    margin-top: 250px;
-    margin-left: 350px;
+    margin-top: 50px;
+    margin-left: 25px;
     align-items: flex-start;
+    display: flex;
+    flex-direction: column; 
 }
 
 .login-box textarea {
-    height: 30px;
-    width: 200px;
+    height: 50px;
+    width: 500px;
     resize: none;
     border-radius: 3px;
-    font-size: 18px;
+    font-size: 32px;
     color: #333;
+    text-align: center;
+
 }
 
 .user-name {
     margin: auto;
+    display: flex;
+  	justify-content: center;
+  	align-items: center;
 }
 
 .room {
-    height: 25px;
-    width: 200px;
+	margin-left: 137px;
+	margin-top: 50px;
+    height: 50px;
+    width: 500px;
     border-radius: 3px;
-    font-size: 18px;
+    font-size: 32px;
+    display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	text-align: center;
 }
 
-.link-button {
-    height: 30px;
-    width: 30px;
+.button-box{
+	justify-content: center;
+  	align-items: center;
+  	text-align: center;
+  	margin-top: 50px;
+}
+
+.link-button{
     background: #fff;
-    padding: 5px;
-    font-size: 18px;
-    margin: 10px;
-    border-radius: 50%;
+    padding: 5px 15px;
+    font-size: 30px;
+    color: #000;
+    border: none;
+    margin: 0 10px;
+    border-radius: 3px;
+    box-shadow: 0 3px 0 #777;
     cursor: pointer;
+    -webkit-transition: background .2s ease;
+    -moz-transition: background .2s ease;
+    -o-transition: background .2s ease;
+    text-decoration: none;
+}
+
+.link-button:hover {
+    background: #ccc;
 }
 
 .photos {
-    margin-left: 340px;
-    margin-top: 15px;
+    margin-left: 0px;
+    margin-top: 50px;
+    justify-content: center;
+  	align-items: center;
+  	text-align: center;
 }
 
 .user-photo {
