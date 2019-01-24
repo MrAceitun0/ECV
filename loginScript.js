@@ -7,7 +7,7 @@ function sendUserName()
 {
     nick = document.getElementById("userName").value;
     localStorage.setItem("userNick",nick);
-    window.location = "index.html";
+    window.location = "chat.html";
 }
 
 okButton.addEventListener("click", sendUserName);
