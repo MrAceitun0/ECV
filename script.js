@@ -100,7 +100,7 @@ function sendMessage()
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") });
+    server.sendMessage({ type: "msg", msg: input.value, userName: localStorage.getItem("userNick") + " #" + userID });
 
     getMessages("msg", input.value, localStorage.getItem("userNick"));
 
@@ -161,7 +161,7 @@ function sendEmoji(emoji)
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    server.sendMessage({ type: "msg", msg: emojiList[emoji], userName: localStorage.getItem("userNick") });
+    server.sendMessage({ type: "msg", msg: emojiList[emoji], userName: localStorage.getItem("userNick") + " #" + userID });
 
     getMessages("msg", emojiList[emoji], author.innerHTML);
 
