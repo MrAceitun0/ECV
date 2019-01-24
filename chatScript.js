@@ -1,4 +1,4 @@
-var imageList = ["img/logo2.png", "img/pac.jpg", "img/cena.png", "img/nyanCat.jpeg", "img/AlphaPiThetaBratva.png", "img/default.png"];
+var imageList = ["img/logo2.png", "img/pac.png", "img/cena.png", "img/nyanCat.png", "img/AlphaPiThetaBratva.png", "img/default.png"];
 var roomListConnections = ["AO_General","AO_Gaming","AO_Offtopic"];
 var roomList = ["General Room","Gaming Room", "Offtopic Room"];
 
@@ -9,16 +9,20 @@ server.connect("ecv-etic.upf.edu:9000", roomListConnections[localStorage.getItem
 //Whenever the user is connected, the name, the image and the selected room are shown on screen
 server.on_connect = function () {
     console.log("Server connected");
-    namePos = document.getElementById("sideUser");
 
-    photo = document.createElement("img");
+    var uSide = document.getElementById("sideBar");
+    var userPos = document.createElement("div");
+    userPos.className = "sideUser";
+    var uName = document.createElement("p");
+    uName.innerHTML = localStorage.getItem("userNick");
+
+    var photo = document.createElement("img");
     photo.className = "user-photo";
     photo.src = imageList[localStorage.getItem("userImage")];
-    namePos.appendChild(photo);
 
-    pName = document.createElement("p");
-    pName.innerHTML = localStorage.getItem("userNick");
-    namePos.appendChild(pName);
+    userPos.appendChild(photo);   
+    userPos.appendChild(uName);
+    uSide.appendChild(userPos);
 
     roomSpace = document.getElementById("roomName");
     roomID = document.createElement("h2");
@@ -79,6 +83,8 @@ server.on_user_connected = function (user_id) {
             server.sendMessage({type: "nth", authorID: uList[i].uID, userName: uList[i].uNom, foto: uList[i].uImg}, user_id);
         }
     }
+    
+    
 
     messages_container.scrollTop = messages_container.scrollHeight;  
 }
@@ -106,6 +112,38 @@ server.on_user_disconnected = function (user_id) {
 
     division.appendChild(message);
     messages_container.appendChild(division);
+
+
+    var uSide;
+    uSide = document.getElementById("sideBar");
+    while (uSide.firstChild) {
+        uSide.removeChild(uSide.firstChild);
+    }
+
+    var logo = document.createElement("img");
+    logo.className = "logo";
+    logo.src = "img/logobo.png";
+    uSide.appendChild(logo);
+
+    var userPos;
+    var uName;  
+    var photo;
+
+    for(var i = 0; i < uList.length; i++)
+        {
+            userPos = document.createElement("div");
+            userPos.className = "sideUser";
+            uName = document.createElement("p");
+            uName.innerHTML = uList[i].uNom;
+            photo = document.createElement("img");
+            photo.className = "user-photo";
+            photo.src = uList[i].uImg;
+
+            userPos.appendChild(photo);   
+            userPos.appendChild(uName);
+            uSide.appendChild(userPos);
+            console.log(uSide);
+        }
     
 }
 
@@ -180,7 +218,38 @@ function recieveMessage(author_id, text) {
     if(JSON.parse(text).type == "nth")
     {
         getUsers(JSON.parse(text).authorID, JSON.parse(text).userName, JSON.parse(text).foto);
-        console.log(uList);
+
+        var uSide;
+        uSide = document.getElementById("sideBar");
+        while (uSide.firstChild) {
+            uSide.removeChild(uSide.firstChild);
+        }
+
+        var logo = document.createElement("img");
+        logo.className = "logo";
+        logo.src = "img/logobo.png";
+
+        uSide.appendChild(logo);
+        var userPos;
+        var uName;
+        var photo;
+
+        for(var i = 0; i < uList.length; i++)
+        {
+            uSide = document.getElementById("sideBar");
+            userPos = document.createElement("div");
+            userPos.className = "sideUser";
+            uName = document.createElement("p");
+            uName.innerHTML = uList[i].uNom;
+            photo = document.createElement("img");
+            photo.className = "user-photo";
+            photo.src = uList[i].uImg;
+
+            userPos.appendChild(photo);   
+            userPos.appendChild(uName);
+            uSide.appendChild(userPos);
+            console.log(uSide);
+        }
     }
     else if(JSON.parse(text).type == "Welcome")
     {

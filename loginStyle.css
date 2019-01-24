@@ -110,4 +110,5 @@ body {
     border-radius: 50%;
     cursor: pointer;
     background: #fff;
+    outline:none
 }

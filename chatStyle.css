@@ -18,27 +18,20 @@ body{
     background: #eee;
     overflow-x: hidden;
     display: flex;
-    flex-wrap: column wrap;
-
+    flex-direction: column;
+    background-color: #0a2d29;
 }
 
 .sideUser {
     width: 250px;
-    position: fixed;
     z-index: 1;
-    top: 200px;
-    left: 200px;
+    margin-left: 50px;
+    margin-top: 10px;
     background: #0a2d29;
     overflow-x: hidden;
     padding: 10px 0;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-width: 2px;
-    border-color: white;
-    border-style: solid;
 }
 
 .sideUser p {
