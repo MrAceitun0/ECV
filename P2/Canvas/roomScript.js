@@ -32,8 +32,8 @@ var curFrame = 0;
 var frameCount = 4; 
 
 //x and y coordinates to render the sprite 
-var x=0;
-var y=0; 
+var x=550;
+var y=250; 
 
 //x and y coordinates of the canvas to get the single frame 
 var srcX=0; 
@@ -54,9 +54,14 @@ var ctx = canvas.getContext("2d");
 
 //Creating an Image object for our character 
 var character = new Image(); 
+var eMark = new Image();
 
 //Setting the source to the image file 
 character.src = "boy2.png";
+eMark.src = "exclamation.png";
+
+ctx.font = "20px Arial";
+canvas.fillStyle = "#000";
 
 var destX = 0;
 var destY = 0;
@@ -81,7 +86,7 @@ function updateFrame(){
 	//srcY = curFrame * height;
 
 	//Clearing the drawn frame 
-	ctx.clearRect(x,y,width,height); 
+	ctx.clearRect(x - width,y - height,x + width,y + height); 
 
 	
 	//if left is true and the character has not reached the left edge 
@@ -141,12 +146,15 @@ function draw(){
 		updateFrame();
 	else
 	{
+		ctx.clearRect(x - width,y - height,x + width,y + height); 
 		srcX = 0;
 		srcY = 0;
-		ctx.clearRect(x,y,width,height);
+		ctx.fillText("MrAceituno", x + 15, y + height);
 	}
 	//Drawing the image 
 	ctx.drawImage(character,srcX,srcY,width,height,x,y,width,height);
+	ctx.drawImage(eMark,srcX,srcY,width,height,x + width/4,y - height/8,width,height);
+
 }
 
 setInterval(draw,100);
