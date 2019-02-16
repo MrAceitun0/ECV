@@ -1,6 +1,6 @@
 var server = new AS_Client();
 
-server.connect("localhost:9041", "GLOBAL"/*localStorage.getItem("Room")*/);
+server.connect("localhost:9042", "GLOBAL"/*localStorage.getItem("Room")*/);
 
 server.on_connect = function ()
 {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/chatStyle.css">
+    <title>ChatApp</title>
+</head>
+<body>
+<div id="sideBar" class="sideBar">
+    <img class="logo" src="../img/logobo.png">
+</div>
+
+
+<div class="chat-box">
+    <div class="roomName" id="roomName">
+    </div>
+
+    <div class="chat">
+        <div class="chatlogs" id="msgbox">
+
+        </div>
+        <div class="chat-form">
+            <button id="emoji1" onclick="sendEmoji(0)"><p>&#x1F602;</p></button>
+            <button id="emoji2" onclick="sendEmoji(1)"><p>&#x1F60D;</p></button>
+            <button id="emoji3" onclick="sendEmoji(2)"><p>&#x1F621;</p></button>
+            <button id="emoji4" onclick="sendEmoji(3)"><p>&#x1F622;</p></button>
+            <button id="emoji5" onclick="sendEmoji(4)"><p>&#x1F639;</p></button>
+            <button id="emoji6" onclick="sendEmoji(5)"><p>&#x1F64B;</p></button>
+            <button id="emoji7" onclick="sendEmoji(6)"><p>&#x1F44C;</p></button>
+            <button id="emoji8" onclick="sendEmoji(7)"><p>&#x1F483;</p></button>
+        </div>
+        <div class="chat-form">
+            <textarea></textarea>
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/chatScript.js"></script>
+</html>

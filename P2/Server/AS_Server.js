@@ -66,7 +66,7 @@ function AS_Server()
     wsServer.on('request', onConnect);
 }
 
-AS_Server.default_port = 9041;
+AS_Server.default_port = 9042;
 
 AS_Server.prototype.listen = function(por)
 {
