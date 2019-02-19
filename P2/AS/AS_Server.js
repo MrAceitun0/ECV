@@ -89,7 +89,7 @@ function onConnect(request)
     request.user_name = "user_" + request.user_id;
     clients.push(request);*/
 
-    console.log("[Server]: New user! -> Name: " + request.user_name + ", ID: " + request.user_id + ".");
+    console.log("[Server]: New user!");
 
     //Send Messages
     onMessage(request);

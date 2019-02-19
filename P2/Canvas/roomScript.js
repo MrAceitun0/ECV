@@ -83,10 +83,7 @@ function updateFrame(){
 
 	//Calculating the x coordinate for spritesheet 
 	srcX = curFrame * width; 
-	//srcY = curFrame * height;
-
-	//Clearing the drawn frame 
-	ctx.clearRect(x - width,y - height,x + width,y + height); 
+	//srcY = curFrame * height; 
 
 	
 	//if left is true and the character has not reached the left edge 
@@ -142,18 +139,19 @@ function updateFrame(){
 }
 
 function draw(){
+	//Clearing the drawn frame 
+	ctx.clearRect(0, 0 ,canvasWidth,canvasHeight);
+	ctx.fillText("MrAceituno", x + 15, y + height);
+	ctx.drawImage(eMark,srcX,srcY,width,height,x /*+ width/4*/,y/* - height/8*/,width,height);
 	if(doAnimation)
 		updateFrame();
 	else
 	{
-		ctx.clearRect(x - width,y - height,x + width,y + height); 
 		srcX = 0;
 		srcY = 0;
-		ctx.fillText("MrAceituno", x + 15, y + height);
 	}
 	//Drawing the image 
 	ctx.drawImage(character,srcX,srcY,width,height,x,y,width,height);
-	ctx.drawImage(eMark,srcX,srcY,width,height,x + width/4,y - height/8,width,height);
 
 }
 

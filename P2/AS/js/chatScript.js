@@ -113,13 +113,13 @@ function receiveMessage(text)
     data = JSON.parse(data);
 
     var division = document.createElement("div");
-    division.className = "chat-message friend";
 
     var message = document.createElement("p");
     var author = document.createElement("h4");
 
     if(data.type === "new_user")
     {
+        division.className = "chat-message new";
         message.innerHTML = data.userName + " has connected";
 
         division.appendChild(message);
@@ -127,6 +127,7 @@ function receiveMessage(text)
     }
     else if(data.type === "user_disconnected")
     {
+        division.className = "chat-message new";
         message.innerHTML = data.userName + " has disconnected";
 
         division.appendChild(message);
@@ -134,6 +135,7 @@ function receiveMessage(text)
     }
     else if(data.type === "private")
     {
+        division.className = "chat-message friend";
         console.log("Holiu");
         author.innerHTML = data.userName + " (whisper)";
         message.innerHTML = data.msg;
@@ -144,6 +146,7 @@ function receiveMessage(text)
     }
     else
     {
+        division.className = "chat-message friend";
         author.innerHTML = data.userName;
         message.innerHTML = data.msg;
 

@@ -102,6 +102,11 @@ body {
     float: right;
 }
 
+.new {
+    background: #646b75;
+    float: left;
+}
+
 .chat-form {
     margin-top: 20px;
     display: flex;
