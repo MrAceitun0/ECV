@@ -2,6 +2,7 @@ var server = new WebSocket("ws://localhost:9041");
 
 var user = localStorage.getItem("userName");
 var room = localStorage.getItem("Room");
+var skin = localStorage.getItem("Skin");
 
 //Width and height for our canvas
 var canvasWidth = 1300;
@@ -37,8 +38,8 @@ var curFrame = 0;
 var frameCount = 4;
 
 //x and y coordinates to render the sprite
-var x = Math.floor((Math.random() * canvasWidth - 150) + 175);
-var y = Math.floor((Math.random() * canvasHeight - 200) + 175);
+var x = Math.floor(Math.random() * (canvasWidth - 200) + 200);
+var y = Math.floor(Math.random() * (canvasHeight - 200) + 200);
 
 //x and y coordinates of the canvas to get the single frame
 var srcX=0;
@@ -68,10 +69,11 @@ var destY = 0;
 
 var doAnimation = false;
 
+var skinList = ["img/boy.png","img/boy2.png","img/boy3.png","img/boy4.png"];
+
 server.onopen = function()
 {
-    ////////////////To Do Skin!!!!!
-    server.send(JSON.stringify({type: "info", userName: user, roomName: room, X: x, Y: y, skin: 0}));
+    server.send(JSON.stringify({type: "info", userName: user, roomName: room, X: x, Y: y, skin: skin}));
 };
 
 canvas.addEventListener('click', on_Key);
@@ -80,8 +82,7 @@ function on_Key(e)
     destX = e.offsetX - width/2;
     destY = e.offsetY - height/2;
     doAnimation = true;
-    ////////////////To Do Skin!!!!!
-    server.send(JSON.stringify({type: "position", userName: user, roomName: room, X: destX, Y: destY, skin: 0}));
+    server.send(JSON.stringify({type: "position", userName: user, roomName: room, X: destX, Y: destY, skin: skin}));
 }
 
 var xFinished = false;
@@ -198,6 +199,7 @@ function receiveInitialPosition(msg)
 
     //draw();
 }
+
 
 function receivePosition(msg)
 {

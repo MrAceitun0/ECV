@@ -95,20 +95,29 @@ body {
 }
 
 .user-photo {
-    width: 100px;
-    height: 100px;
-    background: #fff;
+    width: 200px;
+    height: 200px;
+    background: #0a2d29;
     border-radius: 50%;
     padding: 5px;
     overflow: hidden;
 }
 
+.user-photo-button {
+    width: 50px;
+    height: 50px;
+    background: #0a2d29;
+    border-radius: 50%;
+    padding: 5px;
+    overflow: hidden;
+    margin-bottom: 100%;
+}
 
 .button-user-photo {
-    width: 105px;
-    height: 105px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     cursor: pointer;
-    background: #fff;
-    outline:none
+    background: #0a2d29;
+    outline:none;
 }
