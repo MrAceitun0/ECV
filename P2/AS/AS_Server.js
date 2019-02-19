@@ -13,15 +13,15 @@ function send404Response(response)
 
 function onRequest(request, response)
 {
-    if(request.method == 'GET' && request.url == '/')
+    if(request.method === 'GET' && request.url === '/')
     {
         response.writeHead(200, {"Context-Type": "text/html"});
         fs.createReadStream("./html/login.html").pipe(response);
     }
-    else if(request.url.match('/chat.html'))
+    else if(request.url.match('/room.html'))
     {
         response.writeHead(200, {"Context-Type": "text/html"});
-        fs.createReadStream("./html/chat.html").pipe(response);
+        fs.createReadStream("./html/room.html").pipe(response);
     }
     else if(request.url.match("\.css$"))
     {
@@ -31,6 +31,11 @@ function onRequest(request, response)
     else if(request.url.match("\.png$"))
     {
         response.writeHead(200, {"Context-Type": "image/png"});
+        fs.createReadStream(path.join(__dirname, request.url)).pipe(response);
+    }
+    else if(request.url.match("\.jpg$"))
+    {
+        response.writeHead(200, {"Context-Type": "image/jpg"});
         fs.createReadStream(path.join(__dirname, request.url)).pipe(response);
     }
     else if(request.url.match("\.js$"))
@@ -43,7 +48,6 @@ function onRequest(request, response)
         send404Response(response);
     }
 }
-
 var clients;
 
 var rooms;
@@ -77,7 +81,7 @@ AS_Server.prototype.listen = function(puerto)
     port = puerto || AS_Server.default_port;
     console.log('AS_Server listening in port ' + port + "...");
     server.listen(port);
-}
+};
 
 function onConnect(request)
 {
@@ -135,7 +139,7 @@ function typeInfo(request, dataParsed)
 
     request.user_id = id;
     request.user_name = name;
-    request.user_room = room
+    request.user_room = room;
     clients.push(request);
 
     users.push({Name: name, ID: id, Room: room});

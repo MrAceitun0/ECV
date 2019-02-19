@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club AS</title>
+    <link rel="stylesheet" href="../css/roomStyle.css">
+</head>
+<body>
+<div class="header">
+    <h2>Club Monkey</h2>
+</div>
+
+<div class="row">
+    <div class="chat column side" style="background-color:#efefef;">
+        <div class="roomName" id="roomName" style="background-color:#efefef;"></div>
+        <div class="chatlogs" id="msgbox"></div>
+        <div class="chat-form">
+            <button id="emoji1" style="height: 50px; width: 50px;" onclick="sendEmoji(0)"><p class="inButton">&#x1F602;</p></button>
+            <button id="emoji2" style="height: 50px; width: 50px;" onclick="sendEmoji(1)"><p class="inButton">&#x1F60D;</p></button>
+            <button id="emoji3" style="height: 50px; width: 50px;" onclick="sendEmoji(2)"><p class="inButton">&#x1F621;</p></button>
+            <button id="emoji4" style="height: 50px; width: 50px;" onclick="sendEmoji(3)"><p class="inButton">&#x1F622;</p></button>
+            <button id="emoji5" style="height: 50px; width: 50px;" onclick="sendEmoji(4)"><p class="inButton">&#x1F44C;</p></button>
+        </div>
+        <div class="chat-form">
+            <textarea></textarea>
+            <button id="sendButton" style="padding: 5px 15px; margin: 0px 10px">Send</button>
+        </div>
+    </div>
+    <canvas id='canvas' style="background-image: url(../img/plaza.jpg);"></canvas><br />
+</div>
+</body>
+<script src="../js/chatScript.js"></script>
+<script type="text/javascript" src="../js/roomScript.js"></script>
+</html>

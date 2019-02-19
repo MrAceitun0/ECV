@@ -5,7 +5,7 @@ function sendUserName()
     var userName = document.getElementById("userName").value;
     localStorage.setItem("userName", userName);
 
-    window.location = "chat.html";
+    window.location = "room.html";
 }
 
 function selectRoom()

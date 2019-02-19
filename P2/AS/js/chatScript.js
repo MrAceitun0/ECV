@@ -7,7 +7,7 @@ var room = localStorage.getItem("Room");
 server.onopen = function()
 {
     server.send(JSON.stringify({type: "info", userName: user, roomName: room}));
-}
+};
 
 /*
     Messages
@@ -15,7 +15,7 @@ server.onopen = function()
 server.onmessage = function (msg)
 {
     receiveMessage(msg);
-}
+};
 
 var input = document.querySelector("textarea");
 var sendButton = document.getElementById("sendButton");
@@ -87,7 +87,7 @@ function sendMessage()
 
 function sendEmoji(emoji)
 {
-    var emojiList = ["&#x1F602;","&#x1F60D;","&#x1F621;","&#x1F622;","&#x1F639;","&#x1F64B;","&#x1F44C;","&#x1F483;"];
+    var emojiList = ["&#x1F602;", "&#x1F60D;", "&#x1F621;", "&#x1F622;", "&#x1F44C;"];
 
     var division = document.createElement("div");
     division.className = "chat-message self";
@@ -109,7 +109,6 @@ function sendEmoji(emoji)
 
 function receiveMessage(text)
 {
-    console.log("Hola");
     var data = text.data;
     data = JSON.parse(data);
 
