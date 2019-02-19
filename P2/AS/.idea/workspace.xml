@@ -9,13 +9,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="AS_Chat" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            <state>
+              <caret column="52" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -23,11 +26,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AS_Server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+            <state relative-caret-position="310">
+              <caret line="120" column="78" selection-start-line="120" selection-start-column="78" selection-end-line="120" selection-end-column="78" />
               <folding>
                 <element signature="n#!!block;n#send404Response#0" />
                 <element signature="n#!!block;n#onRequest#0" />
+                <element signature="n#!!block;n#AS_Server#0" />
+                <element signature="e#1895#2032#0" />
+                <element signature="n#!!block;n#typeInfo#0" />
+                <element signature="n#!!block;n#userConnectedMessage#0" />
+                <element signature="n#!!block;n#sendMessagesToNewUser#0" />
+                <element signature="n#!!block;n#typeMessage#0" />
+                <element signature="n#!!block;n#typePrivate#0" />
+                <element signature="n#!!block;n#disconnect#0" />
+                <element signature="n#!!block;n#userDisconnectedMessage#0" />
               </folding>
             </state>
           </provider>
@@ -36,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/chatScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+            <state relative-caret-position="1598">
+              <caret line="111" column="4" lean-forward="true" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -45,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/loginScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+            <state relative-caret-position="136">
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -74,15 +86,15 @@
         <option value="$PROJECT_DIR$/chatStyle.css" />
         <option value="$PROJECT_DIR$/chat.html" />
         <option value="$PROJECT_DIR$/css/loginStyle.css" />
-        <option value="$PROJECT_DIR$/js/loginScript.js" />
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/AS_Client.js" />
         <option value="$PROJECT_DIR$/html/chat.html" />
         <option value="$PROJECT_DIR$/html/login.html" />
-        <option value="$PROJECT_DIR$/AS_Server.js" />
+        <option value="$PROJECT_DIR$/js/loginScript.js" />
         <option value="$PROJECT_DIR$/js/chatScript.js" />
+        <option value="$PROJECT_DIR$/AS_Server.js" />
       </list>
     </option>
   </component>
@@ -97,9 +109,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-12" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="1423" />
+    <option name="y" value="-25" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -108,7 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -126,13 +137,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550356497039" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550591219615" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../GIT/ECV/P2/Server" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -198,12 +210,14 @@
       <workItem from="1549997510718" duration="8268000" />
       <workItem from="1550046752492" duration="23894000" />
       <workItem from="1550312946366" duration="73000" />
-      <workItem from="1550313236528" duration="29744000" />
+      <workItem from="1550313236528" duration="38582000" />
+      <workItem from="1550405729560" duration="2769000" />
+      <workItem from="1550571517776" duration="12622000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63269000" />
+    <option name="totallyTimeSpent" value="87498000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -215,19 +229,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-12" width="1382" height="744" extended-state="6" />
+    <frame x="1358" y="-12" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18229954" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49795082" visible="true" weight="0.18683812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Favorites" order="6" sideWeight="0.5020492" side_tool="true" weight="0.18683812" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8804841" visible="true" weight="0.20294599" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.87821484" visible="true" weight="0.20130932" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -236,7 +250,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49621785" weight="0.2569558" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.11951589" side_tool="true" visible="true" weight="0.20294599" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.12178517" side_tool="true" visible="true" weight="0.20130932" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -273,20 +287,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AS_Client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3230">
-          <caret line="190" selection-start-line="190" selection-end-line="190" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js" />
+    <entry file="file://$PROJECT_DIR$/AS_Client.js" />
     <entry file="file://$PROJECT_DIR$/html/chat.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -303,33 +305,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/loginScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        <state relative-caret-position="136">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        <state>
+          <caret column="52" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AS_Server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        <state relative-caret-position="310">
+          <caret line="120" column="78" selection-start-line="120" selection-start-column="78" selection-end-line="120" selection-end-column="78" />
           <folding>
             <element signature="n#!!block;n#send404Response#0" />
             <element signature="n#!!block;n#onRequest#0" />
+            <element signature="n#!!block;n#AS_Server#0" />
+            <element signature="e#1895#2032#0" />
+            <element signature="n#!!block;n#typeInfo#0" />
+            <element signature="n#!!block;n#userConnectedMessage#0" />
+            <element signature="n#!!block;n#sendMessagesToNewUser#0" />
+            <element signature="n#!!block;n#typeMessage#0" />
+            <element signature="n#!!block;n#typePrivate#0" />
+            <element signature="n#!!block;n#disconnect#0" />
+            <element signature="n#!!block;n#userDisconnectedMessage#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/chatScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+        <state relative-caret-position="1598">
+          <caret line="111" column="4" lean-forward="true" selection-start-line="111" selection-start-column="4" selection-end-line="111" selection-end-column="24" />
         </state>
       </provider>
     </entry>

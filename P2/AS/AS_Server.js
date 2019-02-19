@@ -81,74 +81,178 @@ AS_Server.prototype.listen = function(puerto)
 
 function onConnect(request)
 {
-    request.user_id = last_id;
+    /*request.user_id = last_id;
     request.user_name = "user_" + request.user_id;
-    clients.push(request);
-
-    var id = last_id;
-    var name = "";
-    users.push({Name: name, ID: id});
-    last_id++;
+    clients.push(request);*/
 
     console.log("[Server]: New user! -> Name: " + request.user_name + ", ID: " + request.user_id + ".");
 
-    //Send all messages to new user
-    sendMessagesToNewUser(request);
+    //Send Messages
+    onMessage(request);
 
     //Disconnect
+    disconnect(request);
+}
+
+function onMessage(request)
+{
+    request.onmessage = (function(event)
+    {
+        var data = event.data;
+        data.userName = request.user_name;
+        console.log(data);
+
+        var dataParsed = JSON.parse(data);
+        var dataType = dataParsed.type;
+
+        if(dataType === "info")
+        {
+            //Get info for the new user
+            typeInfo(request, dataParsed);
+
+            //Send message of user connected to all users.
+            userConnectedMessage(request, dataParsed);
+
+            //Send all messages to new user
+            sendMessagesToNewUser(request);
+        }
+        else if(dataType === "private")
+        {
+            typePrivate(request, data, dataParsed);     //Send private message
+        }
+        else if(dataType === "msg")
+        {
+            typeMessage(request, data);
+        }
+    });
+}
+
+function typeInfo(request, dataParsed)
+{
+    var id = last_id;
+    var name = dataParsed.userName;
+    var room = dataParsed.roomName;
+
+    request.user_id = id;
+    request.user_name = name;
+    request.user_room = room
+    clients.push(request);
+
+    users.push({Name: name, ID: id, Room: room});
+
+    last_id++;
+}
+
+function userConnectedMessage(request, dataParsed)
+{
+    var message = {type: "new_user", userName: dataParsed.userName};
+
+    for(var i = 0; i < clients.length; i++)
+    {
+        if(clients[i].user_id === request.user_id)
+        {
+            continue;
+        }
+        if(clients[i].user_room === request.user_room)
+        {
+            clients[i].send(JSON.stringify(message));
+        }
+    }
+}
+
+function sendMessagesToNewUser(request)
+{
+    if(msg.length > 0)
+    {
+        for(var j = 0; j < clients.length; j++)
+        {
+            if(clients[j].user_id === request.user_id)
+            {
+                for (var i = 0; i < msg.length; i++)
+                {
+                    var message = JSON.parse(msg[i]);
+                    if(request.user_room === message.roomName)
+                    {
+                        clients[j].send(msg[i]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function typeMessage(request, data)
+{
+    msg.push(data);
+    for (var i = 0; i < clients.length; i++)
+    {
+        if (request.user_id !== clients[i].user_id)
+        {
+            if(request.user_room === clients[i].user_room)
+            {
+                clients[i].send(data);
+            }
+        }
+    }
+}
+
+function typePrivate(request, data, dataParsed)
+{
+    var dest_id = parseInt(dataParsed.destID);
+
+    for (var i = 0; i < clients.length; i++)
+    {
+        if(dest_id === clients[i].user_id)
+        {
+            if(request.user_room === clients[i].user_room)
+            {
+                console.log(data);
+                clients[i].send(data);
+            }
+        }
+    }
+}
+
+function disconnect(request)
+{
     request.on('close', function(){
         console.log("[Server]: User with id: " + request.user_id + " has disconnected.");
+
         for(var i = 0; i < users.length; i++)
         {
-            //console.log(users[i]);
             if(users[i].ID === request.user_id)
             {
+                userDisconnectedMessage(request, users[i].Name);
+
                 users.splice(i, 1);                     //Delete user from users
             }
         }
         clients.splice(clients.indexOf(request), 1);    //Delete user from clients
 
-        /*if(users.length === 0)
+        if(users.length === 0)                          //If any user is connected, delete all messages
         {
-            msg.splice(0, msg.length);                  //Delete all messages
-        }*/
-    });
-
-    //Send Messages
-    onMessage(request);
-
-    //New User
-    /*request.on('users', function(data){
-        console.log("[Server]: New user");
-        request.username = data;
-        users.push({Name: request.username, ID: last_id});
-        last_id++;
-    });*/
-}
-
-function onMessage(request)
-{
-    request.onmessage = (function(event){
-        var data = event.data;
-        msg.push(data);
-        for(var i = 0; i < clients.length; i++)
-        {
-            if(request.user_id !== clients[i].user_id)
-            {
-                clients[i].send(data);
-            }
+            msg.splice(0, msg.length);
         }
     });
 }
 
-function sendMessagesToNewUser(request)
+function userDisconnectedMessage(request, name)
 {
-    if(msg.length > 0) {
-        for (var i = 0; i < msg.length; i++)
+    var message = {type: "user_disconnected", userName: name};
+
+    for(var i = 0; i < clients.length; i++)
+    {
+        if(clients[i].user_id === request.user_id)
         {
-            clients[request.user_id - 1].send(msg[i]);
+            continue;
+        }
+        if(clients[i].user_room === request.user_room)
+        {
+            clients[i].send(JSON.stringify(message));
         }
     }
 }
+
+
 
 module.exports.AS_Server = AS_Server;

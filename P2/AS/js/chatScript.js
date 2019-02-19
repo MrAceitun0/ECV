@@ -1,73 +1,13 @@
 var server = new WebSocket("ws://localhost:9041");
 //server.connect("localhost:9041", "GLOBAL"/*localStorage.getItem("Room")*/);
-/*
-server.on_connect = function ()
+
+var user = localStorage.getItem("userName");
+var room = localStorage.getItem("Room");
+
+server.onopen = function()
 {
-    server.user_name = localStorage.getItem("userName");
-    console.log(server);
-    var uSide = document.getElementById("sideBar");
-    var userPos = document.createElement("div");
-    userPos.className = "sideUser";
-    var uName = document.createElement("p");
-    uName.innerHTML = "Subi";
-
-    userPos.appendChild(uName);
-    uSide.appendChild(userPos);
-    //console.log(server);
-};
-
-server.on_ready = function(userID)
-{
-
-};
-*/
-/*
-    Room Info
-*/
-var divUsers;
-var nUsers;
-/*
-server.on_room_info = function (info)
-{
-    //Room Name
-    var roomSpace = document.getElementById("roomName");
-    var roomID = document.createElement("h2");
-    roomID.innerHTML = server.room.name;
-    roomSpace.appendChild(roomID);
-
-    //Nº Users Connected
-    divUsers = document.createElement("h3");
-    nUsers = info.clients.length;
-    divUsers.className = "userList";
-    divUsers.innerHTML = nUsers + " users connected";
-
-    var roomName = document.getElementById("roomName");
-    roomName.appendChild(divUsers);
-
-    //Users (Name) Connected
-    var uSide = document.getElementById("sideBar");
-    var userPos = document.createElement("div");
-    userPos.className = "sideUser";
-    var uName = document.createElement("p");
-    uName.innerHTML = server.user_name;
-
-    userPos.appendChild(uName);
-    uSide.appendChild(userPos);
-};*/
-/*
-server.on_user_connected = function(userID)
-{
-    //Nº Users Connected
-    nUsers++;
-    divUsers.innerHTML = nUsers + " users connected";
+    server.send(JSON.stringify({type: "info", userName: user, roomName: room}));
 }
-
-server.on_user_disconnected = function(userID)
-{
-    //Nº Users Connected
-    nUsers--;
-    divUsers.innerHTML = nUsers + " users connected";
-}*/
 
 /*
     Messages
@@ -83,12 +23,13 @@ var messages_container = document.getElementById("msgbox");
 
 function sendMessage()
 {
+    var msg = {};
+
     var division = document.createElement("div");
     division.className = "chat-message self";
 
-
     var author = document.createElement("h4");
-    author.innerHTML = "Dr.Ice";
+    author.innerHTML = user;
 
     var message = document.createElement("p");
     message.innerHTML = input.value;
@@ -97,9 +38,47 @@ function sendMessage()
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    var msg = {type: "msg", msg: input.value, userName: author.innerHTML};
-    msg = JSON.stringify(msg);
-    server.send(msg);
+    var str = input.value;
+    var privado = str.split("");
+    var priv = str.split(" ");
+    var sep = priv[0].split("");
+    var dest = "";
+    var missatge = "";
+
+    //For private message
+    for(var i = 1; i < priv.length; i++)
+    {
+        missatge = missatge.concat(' ', priv[i]);
+    }
+
+    if(privado[0] === "#")
+    {
+        for(var i = 1; i < sep.length; i++)
+        {
+            dest = dest.concat(sep[i]);
+        }
+
+        msg = {type: "private", msg: missatge, userName: author.innerHTML, roomName: room, destID: dest};
+        msg = JSON.stringify(msg);
+        server.send(msg);
+    }
+    else if(privado[1] === "#")
+    {
+        for(var i = 2; i < sep.length; i++)
+        {
+            dest = dest.concat(sep[i]);
+        }
+
+        msg = {type: "private", msg: missatge, userName: author.innerHTML, roomName: room, destID: dest};
+        msg = JSON.stringify(msg);
+        server.send(msg);
+    }
+    else    //Normal message
+    {
+        msg = {type: "msg", msg: input.value, userName: author.innerHTML, roomName: room};
+        msg = JSON.stringify(msg);
+        server.send(msg);
+    }
 
     input.value = "";
 
@@ -109,10 +88,11 @@ function sendMessage()
 function sendEmoji(emoji)
 {
     var emojiList = ["&#x1F602;","&#x1F60D;","&#x1F621;","&#x1F622;","&#x1F639;","&#x1F64B;","&#x1F44C;","&#x1F483;"];
+
     var division = document.createElement("div");
     division.className = "chat-message self";
     var author = document.createElement("h4");
-    author.innerHTML = "Dr.Ice";
+    author.innerHTML = user;
     var message = document.createElement("p");
     message.innerHTML = emojiList[emoji];
 
@@ -120,7 +100,7 @@ function sendEmoji(emoji)
     division.appendChild(message);
     messages_container.appendChild(division);
 
-    var msg = {type: "msg", msg: emojiList[emoji], userName: author.innerHTML};
+    var msg = {type: "msg", msg: emojiList[emoji], userName: author.innerHTML, roomName: room};
     msg = JSON.stringify(msg);
     server.send(msg);
 
@@ -129,22 +109,49 @@ function sendEmoji(emoji)
 
 function receiveMessage(text)
 {
+    console.log("Hola");
     var data = text.data;
     data = JSON.parse(data);
 
     var division = document.createElement("div");
-
     division.className = "chat-message friend";
 
-    var author = document.createElement("h4");
-    author.innerHTML = data.userName;
-
     var message = document.createElement("p");
-    message.innerHTML = data.msg;
+    var author = document.createElement("h4");
 
-    division.appendChild(author);
-    division.appendChild(message);
-    messages_container.appendChild(division);
+    if(data.type === "new_user")
+    {
+        message.innerHTML = data.userName + " has connected";
+
+        division.appendChild(message);
+        messages_container.appendChild(division);
+    }
+    else if(data.type === "user_disconnected")
+    {
+        message.innerHTML = data.userName + " has disconnected";
+
+        division.appendChild(message);
+        messages_container.appendChild(division);
+    }
+    else if(data.type === "private")
+    {
+        console.log("Holiu");
+        author.innerHTML = data.userName + " (whisper)";
+        message.innerHTML = data.msg;
+
+        division.appendChild(author);
+        division.appendChild(message);
+        messages_container.appendChild(division);
+    }
+    else
+    {
+        author.innerHTML = data.userName;
+        message.innerHTML = data.msg;
+
+        division.appendChild(author);
+        division.appendChild(message);
+        messages_container.appendChild(division);
+    }
 
     messages_container.scrollTop = messages_container.scrollHeight;
 }
@@ -154,7 +161,7 @@ sendButton.addEventListener("click", sendMessage);
 input.addEventListener("keydown", onKey);
 function onKey(e)
 {
-    if(e.which == 13)
+    if(e.which === 13)
     {
         sendMessage();
     }
