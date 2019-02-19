@@ -61,15 +61,15 @@ var ctx = canvas.getContext("2d");
 //Creating an Image object for our character
 var character = new Image();
 
+var skinList = ["img/boy.png","img/boy2.png","img/boy3.png","img/boy4.png"];
+
 //Setting the source to the image file
-character.src = "img/boy2.png";
+character.src = skinList[skin];
 
 var destX = 0;
 var destY = 0;
 
 var doAnimation = false;
-
-var skinList = ["img/boy.png","img/boy2.png","img/boy3.png","img/boy4.png"];
 
 server.onopen = function()
 {

@@ -26,7 +26,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AS_Server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
+            <state relative-caret-position="289">
               <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
               <folding>
                 <element signature="n#!!block;n#send404Response#0" />
@@ -48,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/roomScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="71" selection-start-line="71" selection-end-line="71" selection-end-column="76" />
+            <state relative-caret-position="-782">
+              <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -57,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loginScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
+            <state relative-caret-position="116">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -147,8 +147,8 @@
         <option value="$PROJECT_DIR$/html/room.html" />
         <option value="$PROJECT_DIR$/AS_Server.js" />
         <option value="$PROJECT_DIR$/css/loginStyle.css" />
-        <option value="$PROJECT_DIR$/js/roomScript.js" />
         <option value="$PROJECT_DIR$/html/login.html" />
+        <option value="$PROJECT_DIR$/js/roomScript.js" />
         <option value="$PROJECT_DIR$/js/loginScript.js" />
       </list>
     </option>
@@ -210,7 +210,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550617954931" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550618513632" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -278,12 +278,12 @@
       <workItem from="1550571517776" duration="16440000" />
       <workItem from="1550601844018" duration="817000" />
       <workItem from="1550602949028" duration="9288000" />
-      <workItem from="1550612686428" duration="4978000" />
+      <workItem from="1550612686428" duration="5636000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106399000" />
+    <option name="totallyTimeSpent" value="107057000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -345,13 +345,6 @@
     <entry file="file://$PROJECT_DIR$/../GIT/ECV/P2/Canvas/roomScript.js" />
     <entry file="file://$PROJECT_DIR$/html/chat.html" />
     <entry file="file://$PROJECT_DIR$/js/chatScript.js" />
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/roomStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
@@ -363,26 +356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="117" column="12" lean-forward="true" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AS_Server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
-          <folding>
-            <element signature="n#!!block;n#send404Response#0" />
-            <element signature="n#!!block;n#onRequest#0" />
-            <element signature="n#!!block;n#disconnect#0" />
-            <element signature="n#!!block;n#sendMessagesToNewUser#0" />
-            <element signature="n#!!block;n#sendPositionMessage#0" />
-            <element signature="n#!!block;n#sendPositionToNewUser#0" />
-            <element signature="n#!!block;n#typeInfo#0" />
-            <element signature="n#!!block;n#typeMessage#0" />
-            <element signature="n#!!block;n#typePrivate#0" />
-            <element signature="n#!!block;n#userConnectedMessage#0" />
-            <element signature="n#!!block;n#userDisconnectedMessage#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -404,6 +377,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AS_Server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!block;n#send404Response#0" />
+            <element signature="n#!!block;n#onRequest#0" />
+            <element signature="n#!!block;n#disconnect#0" />
+            <element signature="n#!!block;n#sendMessagesToNewUser#0" />
+            <element signature="n#!!block;n#sendPositionMessage#0" />
+            <element signature="n#!!block;n#sendPositionToNewUser#0" />
+            <element signature="n#!!block;n#typeInfo#0" />
+            <element signature="n#!!block;n#typeMessage#0" />
+            <element signature="n#!!block;n#typePrivate#0" />
+            <element signature="n#!!block;n#userConnectedMessage#0" />
+            <element signature="n#!!block;n#userDisconnectedMessage#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/roomScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-782">
+          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -411,17 +418,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/roomScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="71" selection-start-line="71" selection-end-line="71" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/loginScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
+        <state relative-caret-position="116">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

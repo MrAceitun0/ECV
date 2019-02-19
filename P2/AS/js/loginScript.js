@@ -19,6 +19,7 @@ selectRoom();
 okButton.addEventListener("click", sendUserName);
 
 var skin = 0;
+localStorage.setItem("Skin",skin);
 
 var skinList = ["img/avatar.png","img/avatar2.png","img/avatar3.png","img/avatar4.png"];
 
@@ -31,7 +32,11 @@ arrowRight.addEventListener("click", changeRight);
 
 function changeLeft()
 {
-    skin = (skin-1)%4;
+    if(skin === 0)
+        skin = (4 - skin - 1)%4;
+    else
+        skin = (skin-1)%4;
+    console.log(skin);
     skinPhoto.src = skinList[skin];
     localStorage.setItem("Skin",skin);
 }
