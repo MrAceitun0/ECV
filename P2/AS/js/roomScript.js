@@ -193,26 +193,32 @@ server.onmessage = function (msg)
 
 function receiveInitialPosition(msg)
 {
-    //x = msg.posX;
-    //y = msg.posY;
-    //NOMSKIN = msg.skin;
+    var outX = msg.posX;
+    var outY = msg.posY;
+    var outSkin = msg.skin;
 
-    //draw();
+    var outCharacter = new Image();
+    outCharacter.src = skinList[outSkin];
+    ctx.drawImage(outCharacter,0,0,width,height,outX,outY,width,height);
 }
 
 
 function receivePosition(msg)
 {
-    //x = msg.oldPosX;
-    //y = msg.oldPosY;
-    //NOMSKIN = msg.skin;
+    /*
+    var outX = msg.posX;
+    var outY = msg.posY;
+    var outSkin = msg.skin;
 
-    //draw();
+    var outCharacter = new Image();
+    outCharacter.src = skinList[outSkin];
+    ctx.drawImage(outCharacter,0,0,width,height,outX,outY,width,height);
 
-    //destX = msg.newPosX;
-    //destY = msg.newPosY;
+    var destX = msg.newPosX;
+    var destY = msg.newPosY;
 
     //updateFrame();
+    */
 }
 
 var input = document.querySelector("textarea");
