@@ -52,15 +52,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/roomScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="368" selection-start-line="368" selection-end-line="368" />
+            <state relative-caret-position="480">
+              <caret line="190" column="2" lean-forward="true" selection-start-line="190" selection-start-column="2" selection-end-line="190" selection-end-column="2" />
               <folding>
-                <element signature="e#4243#4669#0" />
-                <element signature="e#4709#4942#0" />
-                <element signature="e#5943#6441#0" />
-                <element signature="e#5493#7099#0" />
                 <element signature="e#7127#7814#0" />
-                <element signature="e#7846#9264#0" />
                 <element signature="e#9378#9439#0" />
               </folding>
             </state>
@@ -161,8 +156,8 @@
         <option value="$PROJECT_DIR$/html/login.html" />
         <option value="$PROJECT_DIR$/js/loginScript.js" />
         <option value="$PROJECT_DIR$/html/room.html" />
-        <option value="$PROJECT_DIR$/js/roomScript.js" />
         <option value="$PROJECT_DIR$/AS_Server.js" />
+        <option value="$PROJECT_DIR$/js/roomScript.js" />
       </list>
     </option>
   </component>
@@ -177,7 +172,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="422" />
     <option name="y" value="166" />
     <option name="width" value="1382" />
@@ -292,12 +287,12 @@
       <workItem from="1550601844018" duration="817000" />
       <workItem from="1550602949028" duration="9288000" />
       <workItem from="1550612686428" duration="7638000" />
-      <workItem from="1550655354624" duration="10396000" />
+      <workItem from="1550655354624" duration="10839000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119455000" />
+    <option name="totallyTimeSpent" value="119898000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,15 +436,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/roomScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="368" selection-start-line="368" selection-end-line="368" />
+        <state relative-caret-position="480">
+          <caret line="190" column="2" lean-forward="true" selection-start-line="190" selection-start-column="2" selection-end-line="190" selection-end-column="2" />
           <folding>
-            <element signature="e#4243#4669#0" />
-            <element signature="e#4709#4942#0" />
-            <element signature="e#5943#6441#0" />
-            <element signature="e#5493#7099#0" />
             <element signature="e#7127#7814#0" />
-            <element signature="e#7846#9264#0" />
             <element signature="e#9378#9439#0" />
           </folding>
         </state>

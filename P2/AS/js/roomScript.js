@@ -239,7 +239,6 @@ function receiveInitialPosition(msg)
     newUser.character = createCharacter(newUser);
 
     characters.push(newUser);
-    console.log(characters);
 }
 
 
