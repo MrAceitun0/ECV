@@ -115,6 +115,7 @@ function updateFrame(o){
     ctx.clearRect(o.x,o.y,width,height);
 
 
+
     //if left is true and the character has not reached the left edge
     if(o.x>o.destX){
         //calculate srcY
@@ -392,13 +393,10 @@ function receiveMessage(text)
 
         for(var i = 0; i < characters.length; i++)
         {
-            console.log();
             if(characters[i].id === data.ID)
             {
-
+                ctx.clearRect(characters[i].x,characters[i].y,width,height);
                 characters.splice(i, 1);
-                console.log("Despues");
-                console.log(characters);
             }
         }
     }
