@@ -124,6 +124,9 @@ function onMessage(request)
 
             //Send all users positions to a new user
             sendPositionToNewUser(request);
+
+            //Send new user position to all users
+            sendNewUserPosition(request);
         }
         else if(dataType === "position")
         {
@@ -156,11 +159,11 @@ function disconnect(request)
             }
         }
         clients.splice(clients.indexOf(request), 1);    //Delete user from clients
-
-        if(users.length === 0)                          //If any user is connected, delete all messages
+        console.log(users);
+        /*if(users.length === 0)                          //If any user is connected, delete all messages
         {
             msg.splice(0, msg.length);
-        }
+        }*/
     });
 }
 
@@ -181,6 +184,35 @@ function sendMessagesToNewUser(request)
                     }
                 }
             }
+        }
+    }
+}
+
+function sendNewUserPosition(request)
+{
+    var new_data = {};
+    var x;
+    var y;
+    var name;
+    var room;
+    var id;
+    var color;
+
+    for(var i = 0; i < clients.length; i++)
+    {
+        if(clients[i].user_id !== request.user_id)
+        {
+            x = request.posX;
+            y = request.posY;
+            name = request.user_name;
+            room = request.user_room;
+            id = request.user_id;
+            color = request.skin;
+
+            new_data = {type: "initial_position", userName: name, ID: id, roomName: room, posX: x, posY: y, skin: color};
+            new_data = JSON.stringify(new_data);
+
+            clients[i].send(new_data);
         }
     }
 }
@@ -335,7 +367,7 @@ function userConnectedMessage(request, dataParsed)
 
 function userDisconnectedMessage(request, name)
 {
-    var message = {type: "user_disconnected", userName: name};
+    var message = {type: "user_disconnected", userName: name, ID: request.user_id};
 
     for(var i = 0; i < clients.length; i++)
     {
@@ -346,6 +378,8 @@ function userDisconnectedMessage(request, name)
         if(clients[i].user_room === request.user_room)
         {
             clients[i].send(JSON.stringify(message));
+            console.log(JSON.stringify(message));
+
         }
     }
 }
