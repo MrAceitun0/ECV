@@ -26,11 +26,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AS_Server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="380" column="49" lean-forward="true" selection-start-line="380" selection-start-column="49" selection-end-line="380" selection-end-column="49" />
+            <state>
+              <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#send404Response#0" />
                 <element signature="n#!!block;n#onRequest#0" />
+                <element signature="n#!!block;n#AS_Server#0" />
+                <element signature="e#2139#2276#0" />
+                <element signature="n#!!block;n#onConnect#0" />
+                <element signature="n#!!block;n#disconnect#0" />
                 <element signature="n#!!block;n#sendMessagesToNewUser#0" />
                 <element signature="n#!!block;n#sendNewUserPosition#0" />
                 <element signature="n#!!block;n#sendPositionMessage#0" />
@@ -39,6 +43,7 @@
                 <element signature="n#!!block;n#typeMessage#0" />
                 <element signature="n#!!block;n#typePrivate#0" />
                 <element signature="n#!!block;n#userConnectedMessage#0" />
+                <element signature="n#!!block;n#userDisconnectedMessage#0" />
               </folding>
             </state>
           </provider>
@@ -47,12 +52,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/roomScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="398" column="40" lean-forward="true" selection-start-line="398" selection-start-column="40" selection-end-line="398" selection-end-column="40" />
+            <state relative-caret-position="816">
+              <caret line="368" selection-start-line="368" selection-end-line="368" />
               <folding>
+                <element signature="e#4243#4669#0" />
+                <element signature="e#4709#4942#0" />
                 <element signature="e#5943#6441#0" />
                 <element signature="e#5493#7099#0" />
                 <element signature="e#7127#7814#0" />
+                <element signature="e#7846#9264#0" />
                 <element signature="e#9378#9439#0" />
               </folding>
             </state>
@@ -153,8 +161,8 @@
         <option value="$PROJECT_DIR$/html/login.html" />
         <option value="$PROJECT_DIR$/js/loginScript.js" />
         <option value="$PROJECT_DIR$/html/room.html" />
-        <option value="$PROJECT_DIR$/AS_Server.js" />
         <option value="$PROJECT_DIR$/js/roomScript.js" />
+        <option value="$PROJECT_DIR$/AS_Server.js" />
       </list>
     </option>
   </component>
@@ -284,12 +292,12 @@
       <workItem from="1550601844018" duration="817000" />
       <workItem from="1550602949028" duration="9288000" />
       <workItem from="1550612686428" duration="7638000" />
-      <workItem from="1550655354624" duration="9359000" />
+      <workItem from="1550655354624" duration="10396000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118418000" />
+    <option name="totallyTimeSpent" value="119455000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,11 +417,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AS_Server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="380" column="49" lean-forward="true" selection-start-line="380" selection-start-column="49" selection-end-line="380" selection-end-column="49" />
+        <state>
+          <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
           <folding>
             <element signature="n#!!block;n#send404Response#0" />
             <element signature="n#!!block;n#onRequest#0" />
+            <element signature="n#!!block;n#AS_Server#0" />
+            <element signature="e#2139#2276#0" />
+            <element signature="n#!!block;n#onConnect#0" />
+            <element signature="n#!!block;n#disconnect#0" />
             <element signature="n#!!block;n#sendMessagesToNewUser#0" />
             <element signature="n#!!block;n#sendNewUserPosition#0" />
             <element signature="n#!!block;n#sendPositionMessage#0" />
@@ -422,18 +434,22 @@
             <element signature="n#!!block;n#typeMessage#0" />
             <element signature="n#!!block;n#typePrivate#0" />
             <element signature="n#!!block;n#userConnectedMessage#0" />
+            <element signature="n#!!block;n#userDisconnectedMessage#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/roomScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="398" column="40" lean-forward="true" selection-start-line="398" selection-start-column="40" selection-end-line="398" selection-end-column="40" />
+        <state relative-caret-position="816">
+          <caret line="368" selection-start-line="368" selection-end-line="368" />
           <folding>
+            <element signature="e#4243#4669#0" />
+            <element signature="e#4709#4942#0" />
             <element signature="e#5943#6441#0" />
             <element signature="e#5493#7099#0" />
             <element signature="e#7127#7814#0" />
+            <element signature="e#7846#9264#0" />
             <element signature="e#9378#9439#0" />
           </folding>
         </state>

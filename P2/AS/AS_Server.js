@@ -130,7 +130,6 @@ function onMessage(request)
         }
         else if(dataType === "position")
         {
-            console.log("pos");
             sendPositionMessage(request, dataParsed);
         }
         else if(dataType === "private")
@@ -202,17 +201,20 @@ function sendNewUserPosition(request)
     {
         if(clients[i].user_id !== request.user_id)
         {
-            x = request.posX;
-            y = request.posY;
-            name = request.user_name;
-            room = request.user_room;
-            id = request.user_id;
-            color = request.skin;
+            if(request.user_room === clients[i].user_room)
+            {
+                x = request.posX;
+                y = request.posY;
+                name = request.user_name;
+                room = request.user_room;
+                id = request.user_id;
+                color = request.skin;
 
-            new_data = {type: "initial_position", userName: name, ID: id, roomName: room, posX: x, posY: y, skin: color};
-            new_data = JSON.stringify(new_data);
+                new_data = {type: "initial_position", userName: name, ID: id, roomName: room, posX: x, posY: y, skin: color};
+                new_data = JSON.stringify(new_data);
 
-            clients[i].send(new_data);
+                clients[i].send(new_data);
+            }
         }
     }
 }
@@ -276,17 +278,20 @@ function sendPositionToNewUser(request)
             {
                 if(clients[j].user_id !== request.user_id)
                 {
-                    x = clients[j].posX;
-                    y = clients[j].posY;
-                    name = clients[j].user_name;
-                    room = clients[j].user_room;
-                    id = clients[j].user_id;
-                    color = clients[j].skin;
+                    if(request.user_room === clients[j].user_room)
+                    {
+                        x = clients[j].posX;
+                        y = clients[j].posY;
+                        name = clients[j].user_name;
+                        room = clients[j].user_room;
+                        id = clients[j].user_id;
+                        color = clients[j].skin;
 
-                    new_data = {type: "initial_position", userName: name, ID: id, roomName: room, posX: x, posY: y, skin: color};
-                    new_data = JSON.stringify(new_data);
+                        new_data = {type: "initial_position", userName: name, ID: id, roomName: room, posX: x, posY: y, skin: color};
+                        new_data = JSON.stringify(new_data);
 
-                    clients[i].send(new_data);
+                        clients[i].send(new_data);
+                    }
                 }
             }
         }
@@ -378,8 +383,6 @@ function userDisconnectedMessage(request, name)
         if(clients[i].user_room === request.user_room)
         {
             clients[i].send(JSON.stringify(message));
-            console.log(JSON.stringify(message));
-
         }
     }
 }
