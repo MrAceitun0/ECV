@@ -5,7 +5,9 @@ Sergi Olives - 193196
 
 ## Chat application with canvas 2d implementation
 
-In this application, nodeJS have been used for the server side while HTML+CSS+JS have been used in the server side. This is a continuation of the practice 1 of ECV adding a 2D canvas to implement a virtual representation of users in chat rooms. The app consists in two pages, a login page and the main application with a chat and canvas.
+In this application, nodeJS have been used for the server side while HTML+CSS+JS have been used in the server side. This is a continuation of the practice 1 of ECV adding a 2D canvas to implement a virtual representation of users in chat rooms. The app consists in two pages, a login page and the main application with a chat and canvas. 
+
+In order to execute the server the main.js has to be called.
 
 ### Features:
 * Users can select their user name
@@ -18,3 +20,4 @@ In this application, nodeJS have been used for the server side while HTML+CSS+JS
 * Users can move freely inside the canvas using point&click with the mouse and the movement will be seen in real-time for all the users connected
 * Whenever a user sents a message or an emoji, a red exclamation sign will be shown in top of his head during a few seconds
 * In the down-right corner of the canvas, the room name will be shown
+
