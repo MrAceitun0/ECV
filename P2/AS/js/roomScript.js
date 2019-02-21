@@ -1,4 +1,4 @@
-var server = new WebSocket("ws://localhost:9041");
+var server = new WebSocket("ws://ecv-etic.upf.edu:9041");
 
 var characters = [];
 var skinList = ["img/boy.png","img/boy2.png","img/boy3.png","img/boy4.png"];
@@ -10,8 +10,8 @@ var canvasHeight  = 700;
 var myName = localStorage.getItem("userName");
 var myRoom = localStorage.getItem("Room");
 var mySkin = parseInt(localStorage.getItem("Skin"));
-var myPositionX = Math.floor(Math.random() * (canvasWidth - 200) + 200);
-var myPositionY = Math.floor(Math.random() * (canvasHeight - 200) + 200);
+var myPositionX = Math.floor(Math.random() * 1100 + 0);
+var myPositionY = Math.floor(Math.random() * 500 + 0);
 
 var my = {
     id: 0,
@@ -29,7 +29,8 @@ var my = {
     srcY: 0,
     xFinished: false,
     yFinished: false,
-    character: null
+    character: null,
+    timer: 0
 };
 
 my.character = createCharacter(my);
@@ -100,7 +101,7 @@ function on_Key(e)
     my.destX = e.offsetX - width/2;
     my.destY = e.offsetY - height/2;
     my.doAnimation = true;
-    server.send(JSON.stringify({type: "position", userName: my.user, roomName: my.room, X: my.destX, Y: my.destY, skin: my.skin}));
+    server.send(JSON.stringify({type: "position", userName: my.name, roomName: my.room, X: my.destX, Y: my.destY, skin: my.skin}));
 }
 
 function updateFrame(o){
@@ -112,7 +113,7 @@ function updateFrame(o){
     //srcY = curFrame * height;
 
     //Clearing the drawn frame
-    ctx.clearRect(o.x,o.y,width,height);
+    //ctx.clearRect(o.x,o.y,width,height);
 
 
 
@@ -167,21 +168,39 @@ function updateFrame(o){
     ++o.curFrame;
 }
 
+var ex = new Image();
+ex.src = ("img/bocadillo.png");
+
+var time = 0;
+
 function draw(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     for(var i = 0; i < characters.length; i++)
     {
-        if(characters[i] != null)
+
+        if(characters[i] == null)
+            continue;
+        if(characters[i].doAnimation)
+            updateFrame(characters[i]);
+        else
         {
-            if(characters[i].doAnimation)
-                updateFrame(characters[i]);
-            else
-            {
-                characters[i].srcX = 0;
-                characters[i].srcY = 0;
-                ctx.clearRect(characters[i].x,characters[i].y,width,height);
-            }
-            //Drawing the image
-            ctx.drawImage(characters[i].character,characters[i].srcX,characters[i].srcY,width,height,characters[i].x,characters[i].y,width,height);
+            characters[i].srcX = 0;
+            characters[i].srcY = 0;
+
+        }
+        //Drawing the image
+        ctx.drawImage(characters[i].character,characters[i].srcX,characters[i].srcY,width,height,characters[i].x,characters[i].y,width,height);
+        ctx.font = ("30px Georgia");
+        ctx.fillStyle = "#fff";
+        ctx.fillText(characters[i].name, characters[i].x, characters[i].y + 210);
+        ctx.fillText(myRoom, 1000, 675);
+
+        if(characters[i].timer > 0)
+        {
+            ctx.drawImage(ex,characters[i].x - 55,characters[i].y - 80, 250, 150);
+            --characters[i].timer;
+            time = characters[i].timer;
         }
     }
 }
@@ -197,20 +216,14 @@ server.onmessage = function (msg)
 
     if(msgParsed.type === "position")
     {
-        console.log("position");
-        console.log(msgParsed);
         receivePosition(msgParsed);
     }
     else if(msgParsed.type === "initial_position")
     {
-        console.log("initial_position");
-        console.log(msgParsed);
         receiveInitialPosition(msgParsed);
     }
     else
     {
-        console.log("Antes");
-        console.log(characters);
         receiveMessage(msg);
     }
 };
@@ -233,7 +246,8 @@ function receiveInitialPosition(msg)
         srcY: 0,
         xFinished: false,
         yFinished: false,
-        character: null
+        character: null,
+        timer: 0
     };
 
     newUser.character = createCharacter(newUser);
@@ -260,8 +274,24 @@ function receivePosition(msg)
         srcY: 0,
         xFinished: false,
         yFinished: false,
-        character: null
+        character: null,
+        timer: time
     };
+
+    for(var i = 0; i < characters.length; i++)
+    {
+        if(characters[i].id === updateUser.id)
+        {
+            if(characters[i].x !== updateUser.x)
+            {
+                updateUser.x = characters[i].x;
+            }
+            if(characters[i].y !== updateUser.y)
+            {
+                updateUser.y = characters[i].y;
+            }
+        }
+    }
 
     updateUser.character = createCharacter(updateUser);
 
@@ -335,6 +365,8 @@ function sendMessage()
         msg = {type: "msg", msg: input.value, userName: author.innerHTML, roomName: myRoom};
         msg = JSON.stringify(msg);
         server.send(msg);
+        my.timer = 30;
+        time = 30;
     }
 
     input.value = "";
@@ -362,6 +394,8 @@ function sendEmoji(emoji)
     server.send(msg);
 
     messages_container.scrollTop = messages_container.scrollHeight;
+    my.timer = 30;
+    time = 30;
 }
 
 function receiveMessage(text)
@@ -374,6 +408,7 @@ function receiveMessage(text)
     var message = document.createElement("p");
     var author = document.createElement("h4");
 
+    console.log(data.ID);
     if(data.type === "new_user")
     {
         division.className = "chat-message new";
@@ -394,7 +429,6 @@ function receiveMessage(text)
         {
             if(characters[i].id === data.ID)
             {
-                ctx.clearRect(characters[i].x,characters[i].y,width,height);
                 characters.splice(i, 1);
             }
         }
@@ -402,13 +436,21 @@ function receiveMessage(text)
     else if(data.type === "private")
     {
         division.className = "chat-message friend";
-        console.log("Holiu");
         author.innerHTML = data.userName + " (whisper)";
         message.innerHTML = data.msg;
 
         division.appendChild(author);
         division.appendChild(message);
         messages_container.appendChild(division);
+
+        for(var i = 0; i < characters.length; i++)
+        {
+            if(characters[i].id === data.ID)
+            {
+                characters[i].timer = 30;
+                console.log(characters[i].timer);
+            }
+        }
     }
     else
     {
@@ -419,6 +461,16 @@ function receiveMessage(text)
         division.appendChild(author);
         division.appendChild(message);
         messages_container.appendChild(division);
+
+        for(var i = 0; i < characters.length; i++)
+        {
+            if(characters[i].id === data.ID)
+            {
+                console.log("HEYA");
+                characters[i].timer = 30;
+                console.log(characters[i].timer);
+            }
+        }
     }
 
     messages_container.scrollTop = messages_container.scrollHeight;

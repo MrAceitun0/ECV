@@ -106,6 +106,7 @@ function onMessage(request)
     {
         var data = event.data;
         data.userName = request.user_name;
+        data.ID = request.user_id;
         console.log(data);
 
         var dataParsed = JSON.parse(data);
@@ -138,7 +139,7 @@ function onMessage(request)
         }
         else if(dataType === "msg")
         {
-            typeMessage(request, data);
+            typeMessage(request, data, dataParsed);
         }
     });
 }
@@ -321,16 +322,27 @@ function typeInfo(request, dataParsed)
     last_id++;
 }
 
-function typeMessage(request, data)
+function typeMessage(request, data, dataParsed)
 {
     msg.push(data);
+    var name = dataParsed.userName;
+    var room = dataParsed.roomName;
+    var id = request.user_id;
+    var type = dataParsed.type;
+    var mensaje = dataParsed.msg;
+
+    var new_data = {type: type, msg: mensaje, userName: name, ID: id, roomName: room};
+
+    new_data = JSON.stringify(new_data);
+
     for (var i = 0; i < clients.length; i++)
     {
         if (request.user_id !== clients[i].user_id)
         {
             if(request.user_room === clients[i].user_room)
             {
-                clients[i].send(data);
+
+                clients[i].send(new_data);
             }
         }
     }
@@ -338,6 +350,16 @@ function typeMessage(request, data)
 
 function typePrivate(request, data, dataParsed)
 {
+    var name = dataParsed.userName;
+    var room = dataParsed.roomName;
+    var id = request.user_id;
+    var type = dataParsed.type;
+    var msg = dataParsed.msg;
+
+    var new_data = {type: type, msg: msg, userName: name, ID: id, roomName: room};
+
+    new_data = JSON.stringify(new_data);
+
     var dest_id = parseInt(dataParsed.destID);
 
     for (var i = 0; i < clients.length; i++)
@@ -346,8 +368,7 @@ function typePrivate(request, data, dataParsed)
         {
             if(request.user_room === clients[i].user_room)
             {
-                console.log(data);
-                clients[i].send(data);
+                clients[i].send(new_data);
             }
         }
     }
